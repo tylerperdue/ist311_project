@@ -1,133 +1,98 @@
-/*
- * Author: Fahad Abunayyan
- */
 
-import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.Font;
+
+package credentialmanagementapplication;
+
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
-
-import javax.swing.JOptionPane;
-import java.util.Arrays;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.URL;
+import javax.imageio.ImageIO;
+import javax.swing.*;
 
 
-public class LoginWindow extends JFrame implements ActionListener
+
+public class LoginWindow extends JPanel 
 {
-
-	JTextField txtUsername = new JTextField(10);
-	JPasswordField txtPassword = new JPasswordField(10);
+     private Handler handler = new Handler();  
+     JFrame frame = new JFrame();
+        //background image pulled from URL
+       static BufferedImage bgimg = null;{
+        try {
+                bgimg = ImageIO.read(new URL("http://i.imgur.com/S17IifC.png"));
+        } catch (IOException e) {
+                System.out.println("Error");
+        }}
+       
+    //paint method that will paint background
+    @Override
+    public void paintComponent(Graphics g) {
+        g.drawImage(bgimg, 0, 0, getWidth(), getHeight(), this);
+    }  
 	
-	
-	JLabel lblLogin = new JLabel("Please Login:");
-	JLabel lblUsername = new JLabel("Username:");
-	JLabel lblPassword = new JLabel("Password:");
-	
-	JPanel p1 = new JPanel();
-	JPanel p2 = new JPanel();
-	JPanel p3 = new JPanel();
-	JPanel p4 = new JPanel();
-	JPanel p5 = new JPanel();
-
-	
+        //loginwindow elements
 	JButton btnLogin = new JButton("Login");
 	JButton btnCancel = new JButton("Cancel");
 	JButton btnNewAccount = new JButton("Create New Account");
-
+        JTextField usernameTxtField = new JTextField();
+        JPasswordField passwordField = new JPasswordField();
 	
 	
-	public LoginWindow()
+	public LoginWindow() 
 	{
-		
-		this.setLayout(new FlowLayout());
-		this.setResizable(false);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(250, 340);
-		this.setLocation(500, 250);
-		this.getContentPane().setBackground(Color.WHITE);
-		
-		lblLogin.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		
-//		add(new JLabel(new ImageIcon("vaultii.png")));
-	
-		p1.setBackground(Color.WHITE);
-		p1.add(lblUsername);
-		p1.add(txtUsername);
-		
-		p2.setBackground(Color.WHITE);
-		p2.add(lblPassword);
-		p2.add(txtPassword);
-		
-		p3.setBackground(Color.WHITE);
-		p3.add(btnCancel);
-		p3.add(btnLogin);
-
-		p4.add(lblLogin);
-		p4.setBackground(Color.WHITE);
-
-		p5.add(btnNewAccount);
-		p5.setBackground(Color.WHITE);
-
-		
-	
-		add(p4);
-		add(p1);
-		add(p2);
-		add(p3);
-		add(p5);
-
-		
-		this.btnCancel.addActionListener(this);
-		this.btnLogin.addActionListener(this);
-		this.btnNewAccount.addActionListener(this);
+		 
+            setOpaque(false);
+            
+            //layout set to null so setbounds can work
+            this.setLayout(null);
+        
+        usernameTxtField.setBounds(230, 310, 115, 30);
+        passwordField.setBounds(230, 375, 115, 30);
+        add(usernameTxtField);
+        add(passwordField);
+        btnLogin.setBounds(125, 450, 90, 35);
+        add(btnLogin);      
+        btnLogin.addActionListener(handler);
+        btnCancel.setBounds(225, 450, 90, 35);
+        add(btnCancel);
+        btnCancel.addActionListener(handler);
+        btnNewAccount.setBounds(150, 500, 145, 35);
+        add(btnNewAccount);
+        btnNewAccount.addActionListener(handler);
+        
+       
 	}
-	
-	
-	public void actionPerformed(ActionEvent ae)
-	{
-		switch(ae.getActionCommand())
+
+        //handler class to implement actionlistener switch case            
+	private class Handler implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+             switch(e.getActionCommand())
 		{
 		
 		case "Cancel":
-			this.dispose();
-			this.setVisible(false);
+                       System.exit(0);
 		break;
 			
 		case "Login":
 			System.out.println("Login");
-			if(txtUsername.getText().equals("username") && Arrays.equals(txtPassword.getPassword(), new char[]{'p','a','s','s','w','o','r','d'})){
-				JOptionPane.showMessageDialog(null, "Successfully Authenticated!");
-			}else{
-				JOptionPane.showMessageDialog(null, "Username and/or password incorrect.");
-			}
 			//TODO: Add logic to check login information with excel sheet or list
 			break;
-			
-			default:
-				System.err.println("Error");
-
-		case "Create New Account":
-			this.dispose();
+		case "Create New Account":	
+                        //currently shows in popup window, change so it stays in same frame
 			RegistrationWindow r = new RegistrationWindow();
 			r.setVisible(true);
-		break;			
+		break;		
+                    default:
+				System.err.println("Error");
+                        break;
 		}
-		
-	}
-//	
-//	public static void main(String[] args)
-//	{
-//		
-//		cLogin login = new cLogin();
-//		login.setVisible(true);
-//	}
-//	
+        }
+
+        
+            
+        }
+       
 }
