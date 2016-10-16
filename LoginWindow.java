@@ -105,10 +105,10 @@ public class LoginWindow extends JFrame implements ActionListener
 			System.out.println("Login");
 			if(txtUsername.getText().equals("username") && Arrays.equals(txtPassword.getPassword(), new char[]{'p','a','s','s','w','o','r','d'})){
 				JOptionPane.showMessageDialog(null, "Successfully Authenticated!");
+				mainFrame x = new mainFrame();
 			}else{
 				JOptionPane.showMessageDialog(null, "Username and/or password incorrect.");
 			}
-			//TODO: Add logic to check login information with excel sheet or list
 			break;
 			
 			default:
