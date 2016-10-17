@@ -8,6 +8,9 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -18,6 +21,8 @@ import javax.swing.JTextField;
 
 import javax.swing.JOptionPane;
 import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 
 public class LoginWindow extends JFrame implements ActionListener
@@ -103,15 +108,30 @@ public class LoginWindow extends JFrame implements ActionListener
 			
 		case "Login":
 			System.out.println("Login");
-			if(txtUsername.getText().equals("username") && Arrays.equals(txtPassword.getPassword(), new char[]{'p','a','s','s','w','o','r','d'})){
-				JOptionPane.showMessageDialog(null, "Successfully Authenticated!");
-				mainFrame x = new mainFrame();
-			}else{
-				JOptionPane.showMessageDialog(null, "Username and/or password incorrect.");
-			}
-			break;
+			try{
+				File file = new File("USERLIST.txt");
+				Scanner fileScanner = new Scanner(file);
+				ArrayList<String> usernamesAndPasswords = new ArrayList<String>();
+				char[] password = txtPassword.getPassword();
+				String passwordString = new String(password);
+				while(fileScanner.hasNextLine()){
+					usernamesAndPasswords.add(fileScanner.nextLine());
+				}
+				for(int i = 0; i < usernamesAndPasswords.size(); i++){
+					if((txtUsername.getText()+";"+passwordString).equals(usernamesAndPasswords.get(i))){
+						JOptionPane.showMessageDialog(null, "Successfully Authenticated!");
+						mainFrame x = new mainFrame();
+					}else{
+						JOptionPane.showMessageDialog(null, "Username and/or password incorrect.");
+					}
+				}
+			}catch(FileNotFoundException e) {
+		        System.out.print("FileNotFoundException: ");
+		        System.out.println(e.getMessage());
+        	}
+        	break;
+        	default: 
 			
-			default:
 				System.err.println("Error");
 
 		case "Create New Account":

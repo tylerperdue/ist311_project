@@ -8,6 +8,8 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.PrintWriter;
+import java.io.FileNotFoundException;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -98,16 +100,30 @@ public class RegistrationWindow extends JFrame implements ActionListener
 		break;
 		
 		case "OK":
-			if(txtPassword.getPassword() == txtPasswordAgain.getPassword()){
-				//TODO: Add Logic to add username password to text file
+			char[] password = txtPassword.getPassword();
+			char[] verifyPassword = txtPasswordAgain.getPassword();
+			String passwordString = new String(password);
+			String verifyPasswordString = new String(verifyPassword);
+			if(passwordString.equals(verifyPasswordString)){
+				try {
+            		PrintWriter writer = new PrintWriter("USERLIST.txt");
+					writer.print(txtUsername.getText() + ";");
+					writer.print(passwordString);
+					writer.println();
+					writer.close();
+            	}
+		        catch (FileNotFoundException e) {
+		            System.out.print("FileNotFoundException: ");
+		            System.out.println(e.getMessage());
+        		}
+        		LoginWindow x = new LoginWindow(); 	// open the Login window 
+        		x.setVisible(true);
+				this.dispose();
+				this.setVisible(false);	// set the current frame to invisible 
+				System.out.println("OK");
 			}else{
 				JOptionPane.showMessageDialog(null, "Passwords do not match.");
 			}
-			
-			new LoginWindow(); 	// open the Login window 
-			this.dispose();
-			this.setVisible(false);	// set the current frame to invisible 
-			System.out.println("OK");
 		}
 	}
 }
