@@ -8,7 +8,10 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.io.IOException;
 import java.io.FileNotFoundException;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -24,7 +27,6 @@ public class RegistrationWindow extends JFrame implements ActionListener
 {
 	
 	JLabel lblIntro = new JLabel("Please enter a new Username and Password:");
-
 	
 	JLabel lblUsername = new JLabel("New Username:");
 	JTextField txtUsername = new JTextField(10);
@@ -106,15 +108,19 @@ public class RegistrationWindow extends JFrame implements ActionListener
 			String verifyPasswordString = new String(verifyPassword);
 			if(passwordString.equals(verifyPasswordString)){
 				try {
-            		PrintWriter writer = new PrintWriter("USERLIST.txt");
-					writer.print(txtUsername.getText() + ";");
-					writer.print(passwordString);
-					writer.println();
-					writer.close();
+					PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("USERLIST.txt", true)));
+					out.print(txtUsername.getText() + ";");
+					out.print(passwordString);
+					out.println();
+					out.close();
             	}
 		        catch (FileNotFoundException e) {
 		            System.out.print("FileNotFoundException: ");
 		            System.out.println(e.getMessage());
+        		}
+        		catch (IOException ie) {
+        			System.out.print("IOException: ");
+		            System.out.println(ie.getMessage());
         		}
         		LoginWindow x = new LoginWindow(); 	// open the Login window 
         		x.setVisible(true);
