@@ -9,6 +9,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.io.IOException;
@@ -21,6 +22,8 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.JOptionPane;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 
 public class RegistrationWindow extends JFrame implements ActionListener
@@ -99,37 +102,27 @@ public class RegistrationWindow extends JFrame implements ActionListener
 		case "Cancel":
 			this.dispose();	// kill window
 			this.setVisible(false); // set it to invisible 
+			LoginWindow y = new LoginWindow();
+			y.setVisible(true);
 		break;
 		
 		case "OK":
-			char[] password = txtPassword.getPassword();
-			char[] verifyPassword = txtPasswordAgain.getPassword();
-			String passwordString = new String(password);
-			String verifyPasswordString = new String(verifyPassword);
-			if(passwordString.equals(verifyPasswordString)){
-				try {
-					PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("USERLIST.txt", true)));
-					out.print(txtUsername.getText() + ";");
-					out.print(passwordString);
-					out.println();
-					out.close();
-            	}
-		        catch (FileNotFoundException e) {
-		            System.out.print("FileNotFoundException: ");
-		            System.out.println(e.getMessage());
-        		}
-        		catch (IOException ie) {
-        			System.out.print("IOException: ");
-		            System.out.println(ie.getMessage());
-        		}
-        		LoginWindow x = new LoginWindow(); 	// open the Login window 
+			RegistrationController rc = new RegistrationController(txtUsername.getText(), txtPassword.getPassword(), 
+																   txtPasswordAgain.getPassword());
+			String result = rc.register();
+			if (result.equals("registered")){
+				LoginWindow x = new LoginWindow(); 	// open the Login window 
         		x.setVisible(true);
 				this.dispose();
 				this.setVisible(false);	// set the current frame to invisible 
 				System.out.println("OK");
-			}else{
+			}else if(result.equals("pwds don't match")){
 				JOptionPane.showMessageDialog(null, "Passwords do not match.");
+			}else{
+				JOptionPane.showMessageDialog(null, "Username already exists.");
 			}
+			System.out.println(result);
+				
 		}
 	}
 }

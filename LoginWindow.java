@@ -107,31 +107,18 @@ public class LoginWindow extends JFrame implements ActionListener
 		break;
 			
 		case "Login":
-			System.out.println("Login");
-			try{
-				File file = new File("USERLIST.txt");
-				Scanner fileScanner = new Scanner(file);
-				ArrayList<String> usernamesAndPasswords = new ArrayList<String>();
-				char[] password = txtPassword.getPassword();
-				String passwordString = new String(password);
-				while(fileScanner.hasNextLine()){
-					usernamesAndPasswords.add(fileScanner.nextLine());
-				}
-				for(int i = 0; i < usernamesAndPasswords.size(); i++){
-					if((txtUsername.getText()+";"+passwordString).equals(usernamesAndPasswords.get(i))){
-						JOptionPane.showMessageDialog(null, "Successfully Authenticated!");
-						mainFrame x = new mainFrame();
-					}else{
-						JOptionPane.showMessageDialog(null, "Username and/or password incorrect.");
-					}
-				}
-			}catch(FileNotFoundException e) {
-		        System.out.print("FileNotFoundException: ");
-		        System.out.println(e.getMessage());
-        	}
+			LoginController lc = new LoginController(txtUsername.getText(), txtPassword.getPassword());
+			boolean authentiated = lc.authenticate();
+			if(authentiated){
+				JOptionPane.showMessageDialog(null, "Successfully Authenticated!");
+				mainFrame x = new mainFrame();
+				this.dispose();
+				this.setVisible(false);
+			}else{
+				JOptionPane.showMessageDialog(null, "Username and/or password incorrect.");
+			}
         	break;
         	default: 
-			
 				System.err.println("Error");
 
 		case "Create New Account":
