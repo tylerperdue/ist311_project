@@ -56,7 +56,7 @@ public class LoginWindow extends JFrame implements ActionListener
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(250, 340);
-		this.setLocation(500, 250);
+		this.setLocationRelativeTo(null);
 		this.getContentPane().setBackground(Color.WHITE);
 		
 		lblLogin.setFont(new Font("Tahoma", Font.PLAIN, 16));

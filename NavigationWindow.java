@@ -33,7 +33,7 @@ public class NavigationWindow extends JFrame implements ActionListener
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(500, 340);
-		this.setLocation(500, 250);
+		this.setLocationRelativeTo(null);
 		this.getContentPane().setBackground(Color.WHITE);
 		
 		
@@ -66,7 +66,10 @@ public class NavigationWindow extends JFrame implements ActionListener
 		{
 		
 		case "Password Generator":
-
+			PasswordGenWindow x = new PasswordGenWindow();
+			x.setVisible(true);
+			this.dispose();
+			this.setVisible(false);
 		break;
 			
 		case "Password Vault":

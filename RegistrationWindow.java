@@ -51,7 +51,7 @@ public class RegistrationWindow extends JFrame implements ActionListener
 	RegistrationWindow()
 	{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setLocation(400, 200);
+		this.setLocationRelativeTo(null);
 		this.setLayout(new FlowLayout());
 		this.setSize(340, 410);
 		this.setResizable(false);
