@@ -111,7 +111,9 @@ public class LoginWindow extends JFrame implements ActionListener
 			boolean authentiated = lc.authenticate();
 			if(authentiated){
 				JOptionPane.showMessageDialog(null, "Successfully Authenticated!");
-				mainFrame x = new mainFrame();
+				//mainFrame x = new mainFrame();
+				NavigationWindow x = new NavigationWindow();
+				x.setVisible(true);
 				this.dispose();
 				this.setVisible(false);
 			}else{
