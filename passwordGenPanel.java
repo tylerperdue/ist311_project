@@ -39,7 +39,7 @@ public class passwordGenPanel extends JFrame implements ActionListener
 	private JPanel[] panel = new JPanel[6];
 
 	
-	passwordGenPanel()
+	public passwordGenPanel()
 	{
 		this.setTitle("Password Generator");
 		this.getContentPane().setBackground(Color.WHITE);
@@ -52,14 +52,14 @@ public class passwordGenPanel extends JFrame implements ActionListener
 		for(int j = 0; j < 6; j++)		// loop to initialize the panels
 			panel[j] = new JPanel();
 		
-		chkNumbers = new JCheckBox("Include Numbers in the password");
-		chkLetters = new JCheckBox("Include Letters in the password");
-		chkSpecialChar = new JCheckBox("Include Special Characters in the password");
+		chkNumbers = new JCheckBox("Numbers");
+		chkLetters = new JCheckBox("Letters");
+		chkSpecialChar = new JCheckBox("Special Characters");
 		
 		lblLength = new JLabel("Please enter length of password:");
 		lblGenPassword = new JLabel("Generated Password:");
 		
-		txtLength = new JTextField(5);
+		txtLength = new JTextField(3);
 		
 		displayPassword = new JTextArea(3,25);	
 		displayPassword.setEditable(false);		// does not allow user to type in text area
@@ -75,7 +75,7 @@ public class passwordGenPanel extends JFrame implements ActionListener
 		
 		
 
-		panel[0].setLayout(new GridLayout(3,1)); // to align the checkboxes in panel[0]
+		panel[0].setLayout(new GridLayout(2,2)); // to align the checkboxes in panel[0]
 		
 		panel[0].add(chkNumbers);
 		panel[0].add(chkLetters);
