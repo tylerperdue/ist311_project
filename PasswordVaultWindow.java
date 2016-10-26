@@ -4,11 +4,15 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.JTree;
 
 
 public class PasswordVaultWindow extends JFrame implements ActionListener
@@ -16,17 +20,45 @@ public class PasswordVaultWindow extends JFrame implements ActionListener
 
 	// Define JLabels, JButtons, JTextFields....
 
-
+	
+	LoginWindow verification = new LoginWindow(); 
+	
+	JLabel lblSelect = new JLabel("Select desired category and verify your identity:");
+	
+	JLabel lblVerification = new JLabel("Verify your identity:");
+	
+	JButton btnAuthentication = new JButton("Authenticate");
+	
+	JTextField txtUsername = new JTextField(10);
+	JPasswordField txtPassword = new JPasswordField(10);
+	
+	JTree Categories = new JTree();
+	
 	public PasswordVaultWindow()
 	{
 		
 		this.setLayout(new FlowLayout());
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(500, 340);
+		this.setSize(400, 340);
 		this.setLocationRelativeTo(null);
 		this.getContentPane().setBackground(Color.WHITE);
 		
+		
+		add(lblSelect);
+		add(lblVerification);
+		add(verification.lblUsername);
+		add(txtUsername);
+		add(verification.lblPassword);
+		add(txtPassword);
+		add(this.btnAuthentication);
+		
+		
+		
+		
+		
+		
+		this.btnAuthentication.addActionListener(this);
 		
 		// // p1.setBackground(Color.WHITE);
 		// // p1.add(btnPwdGenerator);
@@ -56,6 +88,28 @@ public class PasswordVaultWindow extends JFrame implements ActionListener
 		switch(ae.getActionCommand())
 		{
 		
+		
+		
+		case "Authenticate":
+			
+			
+			LoginController lc = new LoginController(txtUsername.getText(), txtPassword.getPassword());
+			lc.authenticated = lc.authenticate();
+			
+			if(lc.authenticated)
+			{
+				JOptionPane.showMessageDialog(null, "Authenticated!");
+				
+//				this.add();
+			}
+			
+			
+			else
+			{
+				JOptionPane.showMessageDialog(null, "Username and/or password incorrect.");
+			}
+			
+		break;
 		case "Password Generator":
 
 		break;

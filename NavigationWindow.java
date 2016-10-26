@@ -77,7 +77,8 @@ public class NavigationWindow extends JFrame implements ActionListener
 		break;
 			
 		case "Password Vault":
-
+			PasswordVaultWindow pv = new PasswordVaultWindow();
+			pv.setVisible(true);
         break;
 
 		case "Add Credentials":
