@@ -126,13 +126,38 @@ public class PasswordGenWindow extends JFrame implements ActionListener
 			
 		case "Generate":
 			System.out.println(sldPwdLength.getValue());
+			System.out.println(chkboxUppercaseLetters.isSelected());
 			
+			nLength = sldPwdLength.getValue();
 			try{
 				
 				String strGeneratedPassword = "";
-				nLength = Integer.valueOf(sldPwdLength.getValue());
-				strGeneratedPassword = Generator.GeneratePassword(nLength);
-				this.txtArPassword.setText(strGeneratedPassword);
+				String strCapture = "";
+				
+				
+				
+				for(int i = 0; i < 50; i++)
+				{
+					
+					for(int j = 0; j < 10; j++)
+					{
+						strGeneratedPassword +=   Generator.GenerateCapLetters(1, this.chkboxUppercaseLetters.isSelected()) +
+												  Generator.GenerateSmallLetters(1, this.chkboxLowercaseLetters.isSelected()) +
+												  Generator.GenerateNumbers(1, this.chkboxNumbers.isSelected()) +
+												  Generator.GenerateSymbols(1, this.chkboxSymbols.isSelected());
+					}
+					strGeneratedPassword +=  	 Generator.GenerateCapLetters(2, this.chkboxUppercaseLetters.isSelected()) +
+												 Generator.GenerateSmallLetters(2, this.chkboxLowercaseLetters.isSelected()) +
+												 Generator.GenerateNumbers(2, this.chkboxNumbers.isSelected()) +
+												 Generator.GenerateSymbols(2, this.chkboxSymbols.isSelected());
+				
+					strCapture = strCapture + String.valueOf(strGeneratedPassword);
+				}
+				
+				
+				this.txtArPassword.setText(strCapture.substring(0, nLength));
+
+				
 			}
 			catch(Exception e)
 			{
