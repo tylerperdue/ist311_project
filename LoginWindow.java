@@ -47,6 +47,8 @@ public class LoginWindow extends JFrame implements ActionListener
 	JButton btnCancel = new JButton("Cancel");
 	JButton btnNewAccount = new JButton("Create New Account");
 
+	String LOGGEDINUSER;
+
 	
 	
 	public LoginWindow()
@@ -110,9 +112,10 @@ public class LoginWindow extends JFrame implements ActionListener
 			LoginController lc = new LoginController(txtUsername.getText(), txtPassword.getPassword());
 			boolean authentiated = lc.authenticate();
 			if(authentiated){
+				LoggedInUser lu = new LoggedInUser();
+				lu.setUser(txtUsername.getText());
 				JOptionPane.showMessageDialog(null, "Successfully Authenticated!");
-				//mainFrame x = new mainFrame();
-				NavigationWindow x = new NavigationWindow();
+				NavigationWindow x = new NavigationWindow(lu);
 				x.setVisible(true);
 				this.dispose();
 				this.setVisible(false);

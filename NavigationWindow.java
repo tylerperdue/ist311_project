@@ -25,8 +25,10 @@ public class NavigationWindow extends JFrame implements ActionListener
 	JButton btnUserAccount = new JButton("User Account");
 	JButton btnLogout = new JButton("Logout");
 
+	LoggedInUser loggedUser;
 
-	public NavigationWindow()
+
+	public NavigationWindow(LoggedInUser lu)
 	{
 		
 		this.setLayout(new FlowLayout());
@@ -57,6 +59,8 @@ public class NavigationWindow extends JFrame implements ActionListener
 		this.btnAddCredentials.addActionListener(this);
 		this.btnUserAccount.addActionListener(this);
 		this.btnLogout.addActionListener(this);
+
+		this.loggedUser = lu;
 	}
 	
 	
@@ -66,7 +70,7 @@ public class NavigationWindow extends JFrame implements ActionListener
 		{
 		
 		case "Password Generator":
-			PasswordGenWindow x = new PasswordGenWindow();
+			PasswordGenWindow x = new PasswordGenWindow(loggedUser);
 			x.setVisible(true);
 			this.dispose();
 			this.setVisible(false);
@@ -77,7 +81,10 @@ public class NavigationWindow extends JFrame implements ActionListener
         break;
 
 		case "Add Credentials":
-
+			AddCredentialsWindow y = new AddCredentialsWindow(loggedUser);
+			y.setVisible(true);
+			this.dispose();
+			this.setVisible(false);
 		break;	
 
 		case "User Account":
