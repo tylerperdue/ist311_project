@@ -73,13 +73,20 @@ public class RegistrationWindow extends JPanel
 		break;
 		
 		case "OK":
-               
-                    //TODO: Add logic to check if passwords match
-                    //TODO: Add logic to grab field data and store in excel sheet or list
-                    CredentialManagementApplication.t.setEnabled(true); 	// open the Login window 
-			((Window) getRootPane().getParent()).dispose();
-			//this.setVisible(false);	// set the current frame to invisible 
-			System.out.println("OK");
+            RegistrationController rc = new RegistrationController(txtUsername.getText(), txtPassword.getPassword(), 
+																   txtPasswordAgain.getPassword());
+			String result = rc.register();
+			if (result.equals("registered")){
+				CredentialManagementApplication.t.setEnabled(true); 	// open the Login window 
+				((Window) getRootPane().getParent()).dispose();
+				//this.setVisible(false);	// set the current frame to invisible 
+				System.out.println("OK");
+			}else if(result.equals("pwds don't match")){
+				JOptionPane.showMessageDialog(null, "Passwords do not match.");
+			}else{
+				JOptionPane.showMessageDialog(null, "Username already exists.");
+			}
+			System.out.println(result);
 		}
 	}
 }

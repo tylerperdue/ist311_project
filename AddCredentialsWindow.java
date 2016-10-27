@@ -68,15 +68,16 @@ public class AddCredentialsWindow extends JPanel implements ActionListener
 		{
 		
 		case "Add!":
-                    AddCredentialsController x = new AddCredentialsController(loggedUser, newUsernameTextfield.getText(), 
-                          newPasswordTextfield.getPassword());
+            AddCredentialsController x = new AddCredentialsController(loggedUser, newUsernameTextfield.getText(), 
+            newPasswordTextfield.getPassword());
 			boolean added = x.addCredential();
+            System.out.println(added);
 			if(added){
 				NavigationWindow y = new NavigationWindow(loggedUser);	
 				MainFrame.mainFrame.getContentPane().removeAll();
-                                MainFrame.mainFrame.add(y);
-                                MainFrame.mainFrame.getContentPane().invalidate();
-                                MainFrame.mainFrame.getContentPane().validate();
+                MainFrame.mainFrame.add(y);
+                MainFrame.mainFrame.getContentPane().invalidate();
+                MainFrame.mainFrame.getContentPane().validate();
 			}else{
 				JOptionPane.showMessageDialog(null, "Unable to add credential");
 			}
