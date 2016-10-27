@@ -1,7 +1,3 @@
-package credentialmanagementapplication;
-
-import static credentialmanagementapplication.MainFrame.mainFrame;
-  
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
@@ -97,47 +93,47 @@ public class NavigationWindow extends JPanel
         @Override
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == addCredentialButton) {
-                mainFrame.getContentPane().removeAll();
+                MainFrame.mainFrame.getContentPane().removeAll();
                 AddCredentialsWindow y = new AddCredentialsWindow(loggedUser);
-                mainFrame.add(y);
-                mainFrame.getContentPane().invalidate();
-                mainFrame.getContentPane().validate();    
+                MainFrame.mainFrame.add(y);
+                MainFrame.mainFrame.getContentPane().invalidate();
+                MainFrame.mainFrame.getContentPane().validate();    
             }
                 else if (e.getSource() == passwordGenButton) {
-                    mainFrame.getContentPane().removeAll();
+                    MainFrame.mainFrame.getContentPane().removeAll();
                     PasswordGenWindow x = new PasswordGenWindow(loggedUser);
-                    mainFrame.add(x);
-                    mainFrame.getContentPane().invalidate();
-                    mainFrame.getContentPane().validate();        
+                    MainFrame.mainFrame.add(x);
+                    MainFrame.mainFrame.getContentPane().invalidate();
+                    MainFrame.mainFrame.getContentPane().validate();        
                 }
                 
                 else if (e.getSource() == passwordVaultButton) {
-                    mainFrame.getContentPane().removeAll();
+                    MainFrame.mainFrame.getContentPane().removeAll();
                     PasswordVaultWindow pv = new PasswordVaultWindow();
-                    mainFrame.add(pv);
-                    mainFrame.getContentPane().invalidate();
-                    mainFrame.getContentPane().validate();
+                    MainFrame.mainFrame.add(pv);
+                    MainFrame.mainFrame.getContentPane().invalidate();
+                    MainFrame.mainFrame.getContentPane().validate();
                 }
                 else if (e.getSource() == userAccountButton) {
-                    mainFrame.getContentPane().removeAll();
+                    MainFrame.mainFrame.getContentPane().removeAll();
                     UserAccountWindow ua = new UserAccountWindow();
-                    mainFrame.add(ua);
-                    mainFrame.getContentPane().invalidate();
-                    mainFrame.getContentPane().validate();
+                    MainFrame.mainFrame.add(ua);
+                    MainFrame.mainFrame.getContentPane().invalidate();
+                    MainFrame.mainFrame.getContentPane().validate();
                 }
                 else if (e.getSource() == searchButton) {
-                    mainFrame.getContentPane().removeAll();
+                    MainFrame.mainFrame.getContentPane().removeAll();
                     SearchResultsWindow s = new SearchResultsWindow();
-                    mainFrame.add(s);
-                    mainFrame.getContentPane().invalidate();
-                    mainFrame.getContentPane().validate();
+                    MainFrame.mainFrame.add(s);
+                    MainFrame.mainFrame.getContentPane().invalidate();
+                    MainFrame.mainFrame.getContentPane().validate();
                 }
                 else if (e.getSource() == logoutButton) {
-                    mainFrame.getContentPane().removeAll();
+                    MainFrame.mainFrame.getContentPane().removeAll();
                     LoginWindow lo = new LoginWindow();
-                    mainFrame.add(lo);
-                    mainFrame.getContentPane().invalidate();
-                    mainFrame.getContentPane().validate();
+                    MainFrame.mainFrame.add(lo);
+                    MainFrame.mainFrame.getContentPane().invalidate();
+                    MainFrame.mainFrame.getContentPane().validate();
                 }
             }
             

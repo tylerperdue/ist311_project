@@ -1,5 +1,3 @@
-package credentialmanagementapplication;
-
 import java.util.Random;
 
 public class PasswordGenController 

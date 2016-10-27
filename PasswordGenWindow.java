@@ -1,7 +1,3 @@
-
-package credentialmanagementapplication;
-
-import static credentialmanagementapplication.MainFrame.mainFrame;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
@@ -104,12 +100,12 @@ public class PasswordGenWindow extends JPanel implements ActionListener
 		
 		case "Back":
                     
-                    mainFrame.getContentPane().removeAll();
+                    MainFrame.mainFrame.getContentPane().removeAll();
                        
                     NavigationWindow x = new NavigationWindow(loggedUser);
-                    mainFrame.add(x);
-                    mainFrame.getContentPane().invalidate();
-                    mainFrame.getContentPane().validate();		
+                    MainFrame.mainFrame.add(x);
+                    MainFrame.mainFrame.getContentPane().invalidate();
+                    MainFrame.mainFrame.getContentPane().validate();		
 			
 		break;
 			

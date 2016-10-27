@@ -1,6 +1,3 @@
-
-package credentialmanagementapplication;
-import static credentialmanagementapplication.MainFrame.mainFrame;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,6 +8,7 @@ import javax.imageio.ImageIO;
 
 
 import javax.swing.*;
+
 
 
 public class AddCredentialsWindow extends JPanel implements ActionListener
@@ -75,10 +73,10 @@ public class AddCredentialsWindow extends JPanel implements ActionListener
 			boolean added = x.addCredential();
 			if(added){
 				NavigationWindow y = new NavigationWindow(loggedUser);	
-				mainFrame.getContentPane().removeAll();
-                                mainFrame.add(y);
-                                mainFrame.getContentPane().invalidate();
-                                mainFrame.getContentPane().validate();
+				MainFrame.mainFrame.getContentPane().removeAll();
+                                MainFrame.mainFrame.add(y);
+                                MainFrame.mainFrame.getContentPane().invalidate();
+                                MainFrame.mainFrame.getContentPane().validate();
 			}else{
 				JOptionPane.showMessageDialog(null, "Unable to add credential");
 			}
@@ -90,12 +88,12 @@ public class AddCredentialsWindow extends JPanel implements ActionListener
         break;
 
 		case "Back":
-                    mainFrame.getContentPane().removeAll();
+                    MainFrame.mainFrame.getContentPane().removeAll();
                        
                     NavigationWindow z = new NavigationWindow(loggedUser);
-                    mainFrame.add(z);
-                    mainFrame.getContentPane().invalidate();
-                    mainFrame.getContentPane().validate();
+                    MainFrame.mainFrame.add(z);
+                    MainFrame.mainFrame.getContentPane().invalidate();
+                    MainFrame.mainFrame.getContentPane().validate();
                     
 		break;	
 
