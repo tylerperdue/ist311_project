@@ -14,20 +14,16 @@ public class PasswordGenController
 		String GenLetters = "";
 		
 		final String CapAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-		
 		final int nAlphabetSize = CapAlphabet.length();
 		
-		final int nAlphaSize = nAlphabetSize;
-		
 		Random r = new Random();
-		
 		
 		if(checkBoxState == true)
 		{
 			for(int i = 0; i < nLength; i++)
 			{
 			
-				charGenLetters = CapAlphabet.charAt(r.nextInt(nAlphaSize));
+				charGenLetters = CapAlphabet.charAt(r.nextInt(nAlphabetSize));
 			
 				GenLetters = GenLetters + String.valueOf(charGenLetters);
 			}
@@ -42,14 +38,9 @@ public class PasswordGenController
 	{
 		int nLength = Length;
 		char charGenLetters;
-		
 		String GenLetters = "";
-		
 		final String SmaAlphabet = "abcdefghjklmnopqrstuvwxyzi";
-		
 		final int nAlphabetSize = SmaAlphabet.length();
-		
-		final int nAlphaSize = nAlphabetSize;
 		
 		Random r = new Random();
 		
@@ -57,45 +48,34 @@ public class PasswordGenController
 		{
 			for(int i = 0; i < nLength; i++)
 			{
-			
-				charGenLetters = SmaAlphabet.charAt(r.nextInt(nAlphaSize));
-			
+				charGenLetters = SmaAlphabet.charAt(r.nextInt(nAlphabetSize));
 				GenLetters = GenLetters + String.valueOf(charGenLetters);
 			}
 		}
-		return GenLetters;
 		
+		return GenLetters;
 	}
 	
 	public  String GenerateNumbers(int Length, boolean checkBoxState)
 	{
 		int nLength = Length;
 		char charGenNumber;
-		
 		String GenNumbers = "";
-		
 		final String strNumbers = "0123456789";
-		
 		final int nNumbersSize = strNumbers.length();
 		
-		final int nNumSize = nNumbersSize;
-		
 		Random r = new Random();
-		
 		
 		if(checkBoxState == true)
 		{
 			for(int i = 0; i < nLength; i++)
 			{
-				
-				charGenNumber = strNumbers.charAt(r.nextInt(nNumSize));
-			
+				charGenNumber = strNumbers.charAt(r.nextInt(nNumbersSize));
 				GenNumbers = GenNumbers + String.valueOf(charGenNumber);
 			}
 		}
 		
 		return GenNumbers;
-		
 	}
 	
 	public  String GenerateSymbols(int Length, boolean checkBoxState)
@@ -109,17 +89,13 @@ public class PasswordGenController
 		
 		final int nSymbolsSize = strSymbols.length();
 		
-		final int nSymSize = nSymbolsSize;
-		
 		Random r = new Random();
 		
 		if(checkBoxState == true)
 		{
 			for(int i = 0; i < nLength; i++)
 			{
-			
-				charGenSymbol = strSymbols.charAt(r.nextInt(nSymSize));
-			
+				charGenSymbol = strSymbols.charAt(r.nextInt(nSymbolsSize));
 				GenSymbol = GenSymbol + String.valueOf(charGenSymbol);
 			}
 		}
