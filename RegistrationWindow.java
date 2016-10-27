@@ -1,128 +1,98 @@
-/*
- * Author: Fahad Abunayyan
- */
+package credentialmanagementapplication;
 
+import static credentialmanagementapplication.CredentialManagementApplication.t;
 import java.awt.Color;
 import java.awt.FlowLayout;
-import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.PrintWriter;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.io.FileNotFoundException;
-import javax.swing.ImageIcon;
+import java.net.URL;
+import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.JOptionPane;
-import java.util.ArrayList;
-import java.util.Scanner;
 
 
-public class RegistrationWindow extends JFrame implements ActionListener
+public class RegistrationWindow extends JPanel 
 {
+    private Handler handler = new Handler();
+  
+    static BufferedImage bgimg = null;{
+        try {
+                bgimg = ImageIO.read(new URL("http://i.imgur.com/Jr2kf94.png"));
+        } catch (IOException e) {
+                System.out.println("Error");
+        }}
+       
+    //paint method that will paint background
+    
+    @Override
+    public void paintComponent(Graphics g) {
+        g.drawImage(bgimg, 0, 0, getWidth(), getHeight(), this);
+    }  
+	JTextField txtUsername = new JTextField();
 	
-	JLabel lblIntro = new JLabel("Please enter a new Username and Password:");
+	JPasswordField txtPassword = new JPasswordField();
 	
-	JLabel lblUsername = new JLabel("New Username:");
-	JTextField txtUsername = new JTextField(10);
-	
-	JLabel lblPassword = new JLabel("New Password:");
-	JPasswordField txtPassword = new JPasswordField(10);
-	
-	JLabel lblRepeatPassword = new JLabel("Re-enter Password:");
-	JPasswordField txtPasswordAgain = new JPasswordField(10);
+	JPasswordField txtPasswordAgain = new JPasswordField();
 	
 	JButton btnCancel = new JButton("Cancel");
 	JButton btnOK = new JButton("OK");
 	
-	JPanel p1 = new JPanel();
-	JPanel p2 = new JPanel();
-	JPanel p3 = new JPanel();
-	JPanel p0 = new JPanel();
 	
 	RegistrationWindow()
 	{
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setLocationRelativeTo(null);
-		this.setLayout(new FlowLayout());
+		
+		this.setLayout(null);
 		this.setSize(340, 410);
-		this.setResizable(false);
+	
+                txtUsername.setBounds(183,170,115,35);
+                add(txtUsername);
+                txtPassword.setBounds(183,210,115,35);
+                add(txtPassword);
+                txtPasswordAgain.setBounds(183,260,115,35);
+                add(txtPasswordAgain);	
+                btnOK.setBounds(85,310,80,35);
+                add(btnOK);
+                btnCancel.setBounds(183,310,90,35);
+                add(btnCancel);
+                
 		
-		lblIntro.setFont(new Font("Tahoma", Font.PLAIN, 16)); // change the font and size 
-		
-//		add(new JLabel(new ImageIcon("cm.png"))); // for adding an image
-		
-		
-		this.getContentPane().setBackground(Color.WHITE);
-		
-		p1.setBackground(Color.WHITE);
-		p1.add(lblIntro);
-		
-		p2.setLayout(new GridLayout(3,2));
-		p3.setLayout(new GridLayout(1,2));
-		
-		p2.setBackground(Color.WHITE);
-		p3.setBackground(Color.WHITE);
-		
-		p2.add(lblUsername);
-		p2.add(txtUsername);
-		p2.add(lblPassword);
-		p2.add(txtPassword);
-		p2.add(lblRepeatPassword);
-		p2.add(txtPasswordAgain);		
-		p3.add(btnCancel);
-		p3.add(btnOK);
-		
-		
-		this.btnCancel.addActionListener(this);
-		this.btnOK.addActionListener(this);
-		add(p1);
-		add(p2);
-		add(p3);
-		
-		
-		
-//		add(p4);
+                btnCancel.addActionListener(handler);
+                btnOK.addActionListener(handler);
+
+
 		
 	}
-	
+	//handler class to implement actionlistener switch case            
+	private class Handler implements ActionListener {
+
+        @Override
 	
 	public void actionPerformed(ActionEvent ae)
 	{
 		switch(ae.getActionCommand())
 		{
 		case "Cancel":
-			this.dispose();	// kill window
-			this.setVisible(false); // set it to invisible 
-			LoginWindow y = new LoginWindow();
-			y.setVisible(true);
+			 ((Window) getRootPane().getParent()).dispose();
+                         t.setEnabled(true); 
 		break;
 		
 		case "OK":
-			RegistrationController rc = new RegistrationController(txtUsername.getText(), txtPassword.getPassword(), 
-																   txtPasswordAgain.getPassword());
-			String result = rc.register();
-			if (result.equals("registered")){
-				LoginWindow x = new LoginWindow(); 	// open the Login window 
-        		x.setVisible(true);
-				this.dispose();
-				this.setVisible(false);	// set the current frame to invisible 
-				System.out.println("OK");
-			}else if(result.equals("pwds don't match")){
-				JOptionPane.showMessageDialog(null, "Passwords do not match.");
-			}else{
-				JOptionPane.showMessageDialog(null, "Username already exists.");
-			}
-			System.out.println(result);
-				
+               
+                    //TODO: Add logic to check if passwords match
+                    //TODO: Add logic to grab field data and store in excel sheet or list
+                    t.setEnabled(true); 	// open the Login window 
+			((Window) getRootPane().getParent()).dispose();
+			//this.setVisible(false);	// set the current frame to invisible 
+			System.out.println("OK");
 		}
 	}
+}
 }

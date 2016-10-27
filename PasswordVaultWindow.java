@@ -1,28 +1,19 @@
-import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.Font;
+package credentialmanagementapplication;
+
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
-import javax.swing.JTree;
+import javax.swing.*;
 
 
-public class PasswordVaultWindow extends JFrame implements ActionListener
+
+public class PasswordVaultWindow extends JPanel implements ActionListener
 {
 
 	// Define JLabels, JButtons, JTextFields....
 
-	
-	LoginWindow verification = new LoginWindow(); 
-	
+        LoginWindow verification = new LoginWindow();
+
 	JLabel lblSelect = new JLabel("Select desired category and verify your identity:");
 	
 	JLabel lblVerification = new JLabel("Verify your identity:");
@@ -37,28 +28,28 @@ public class PasswordVaultWindow extends JFrame implements ActionListener
 	public PasswordVaultWindow()
 	{
 		
-		this.setLayout(new FlowLayout());
-		this.setResizable(false);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(400, 340);
-		this.setLocationRelativeTo(null);
-		this.getContentPane().setBackground(Color.WHITE);
-		
-		
-		add(lblSelect);
-		add(lblVerification);
-		add(verification.lblUsername);
-		add(txtUsername);
-		add(verification.lblPassword);
-		add(txtPassword);
-		add(this.btnAuthentication);
-		
-		
-		
-		
-		
-		
-		this.btnAuthentication.addActionListener(this);
+//		this.setLayout(new FlowLayout());
+//		this.setResizable(false);
+//		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		this.setSize(400, 340);
+//		this.setLocationRelativeTo(null);
+//		this.getContentPane().setBackground(Color.WHITE);
+//		
+//		
+//		add(lblSelect);
+//		add(lblVerification);
+//		add(verification.lblUsername);
+//		add(txtUsername);
+//		add(verification.lblPassword);
+//		add(txtPassword);
+//		add(this.btnAuthentication);
+//		
+//		
+//		
+//		
+//		
+//		
+//		this.btnAuthentication.addActionListener(this);
 		
 		// // p1.setBackground(Color.WHITE);
 		// // p1.add(btnPwdGenerator);

@@ -1,5 +1,6 @@
-import java.util.Random;
+package credentialmanagementapplication;
 
+import java.util.Random;
 
 public class PasswordGenController 
 {
@@ -128,5 +129,6 @@ public class PasswordGenController
 		return GenSymbol;
 		
 	}
+
 
 }

@@ -1,77 +1,66 @@
-import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.Font;
+
+package credentialmanagementapplication;
+import static credentialmanagementapplication.MainFrame.mainFrame;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.URL;
+import javax.imageio.ImageIO;
 
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.JPasswordField;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
 
-public class AddCredentialsWindow extends JFrame implements ActionListener
+public class AddCredentialsWindow extends JPanel implements ActionListener
 {
+       //background image pulled from URL
+       static BufferedImage bgimg = null;{
+        try {
+                bgimg = ImageIO.read(new URL("http://i.imgur.com/8Nrep2s.png"));
+        } catch (IOException e) {
+                System.out.println("Error");
+        }}
+       
+    //paint method that will paint background
+    @Override
+    public void paintComponent(Graphics g) {
+        g.drawImage(bgimg, 0, 0, getWidth(), getHeight(), this);
+    }  
 
-	JLabel lblIntro = new JLabel("Input new credentials and select category: ");
-	
-	JLabel lblUsername = new JLabel("New Username:");
-	JTextField txtUsername = new JTextField(10);
-	
-	JLabel lblPassword = new JLabel("New Password:");
-	JPasswordField txtPassword = new JPasswordField(10);
-	
-	JButton btnBack = new JButton("Back");
-	JButton btnAdd = new JButton("Add");
-	
-	JPanel p1 = new JPanel();
-	JPanel p2 = new JPanel();
-	JPanel p3 = new JPanel();
-	JPanel p4 = new JPanel();
-
+	JTextField newUsernameTextfield = new JTextField();
+        JPasswordField newPasswordTextfield = new JPasswordField();
+        JButton addButton = new JButton("Add!");
+        JButton clearButton = new JButton("Clear");
+        JButton backButton = new JButton("Back");
+        
 	LoggedInUser loggedUser;
 
 
 	public AddCredentialsWindow(LoggedInUser lu)
 	{
 		
-		this.setLayout(new FlowLayout());
-		this.setResizable(false);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(500, 340);
-		this.setLocationRelativeTo(null);
-		this.getContentPane().setBackground(Color.WHITE);
+                setLayout(null);
+                
+                newUsernameTextfield.setBounds(233,257,130,35);
+		newPasswordTextfield.setBounds(233,307,130,35);
+		addButton.setBounds(190,540,90,35);
+		clearButton.setBounds(85,560,90,35);
+                backButton.setBounds(300,560,90,35);
+                        
+                add(newUsernameTextfield);
+                add(newPasswordTextfield);
+                add(addButton);
+                add(clearButton);
+                add(backButton);
+
+                addButton.addActionListener(this);
+                clearButton.addActionListener(this);
+                backButton.addActionListener(this);
 		
-		
-		p1.setBackground(Color.WHITE);
-		p1.add(lblIntro);
+                this.loggedUser = lu;
 
-		p2.setBackground(Color.WHITE);
-		p2.add(lblUsername);
-		p2.add(txtUsername);
-
-		p3.setBackground(Color.WHITE);
-		p3.add(lblPassword);
-		p3.add(txtPassword);
-
-		p4.setBackground(Color.WHITE);
-		p4.add(btnBack);
-		p4.add(btnAdd);
-		
-		add(p1);
-		add(p2);
-		add(p3);
-		add(p4);
-
-		this.btnBack.addActionListener(this);
-		this.btnAdd.addActionListener(this);
-
-		this.loggedUser = lu;
 	}
 	
 	
@@ -80,24 +69,36 @@ public class AddCredentialsWindow extends JFrame implements ActionListener
 		switch(ae.getActionCommand())
 		{
 		
-		case "Back":
-
-		break;
-			
-		case "Add":
-			AddCredentialsController x = new AddCredentialsController(loggedUser, txtUsername.getText(), 
-																	  txtPassword.getPassword());
+		case "Add!":
+                    AddCredentialsController x = new AddCredentialsController(loggedUser, newUsernameTextfield.getText(), 
+                          newPasswordTextfield.getPassword());
 			boolean added = x.addCredential();
 			if(added){
-				NavigationWindow y = new NavigationWindow(loggedUser);
-				y.setVisible(true);
-				this.dispose();
-				this.setVisible(false);
+				NavigationWindow y = new NavigationWindow(loggedUser);	
+				mainFrame.getContentPane().removeAll();
+                                mainFrame.add(y);
+                                mainFrame.getContentPane().invalidate();
+                                mainFrame.getContentPane().validate();
 			}else{
 				JOptionPane.showMessageDialog(null, "Unable to add credential");
 			}
+
+		break;
+			
+		case "Clear":
+
         break;
-	
-		}
+
+		case "Back":
+                    mainFrame.getContentPane().removeAll();
+                       
+                    NavigationWindow z = new NavigationWindow(loggedUser);
+                    mainFrame.add(z);
+                    mainFrame.getContentPane().invalidate();
+                    mainFrame.getContentPane().validate();
+                    
+		break;	
+
 	}
+}
 }

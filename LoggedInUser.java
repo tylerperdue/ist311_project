@@ -1,3 +1,5 @@
+package credentialmanagementapplication;
+
 public class LoggedInUser{
 	String username;
 

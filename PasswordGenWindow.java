@@ -1,110 +1,95 @@
-import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JCheckBox;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JSlider;
-import javax.swing.JTextArea;
+package credentialmanagementapplication;
+
+import static credentialmanagementapplication.MainFrame.mainFrame;
+import java.awt.*;
+import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.URL;
+import javax.imageio.ImageIO;
+import javax.swing.*;
 import javax.swing.border.Border;
 
 
-public class PasswordGenWindow extends JFrame implements ActionListener
+public class PasswordGenWindow extends JPanel implements ActionListener
 {
+    //background image pulled from URL
+       static BufferedImage bgimg = null;{
+        try {
+                bgimg = ImageIO.read(new URL("http://i.imgur.com/fIIfuBg.png"));
+        } catch (IOException e) {
+                System.out.println("Error");
+        }}
+       
+       //paint method that will paint background
+    @Override
+    public void paintComponent(Graphics g) {
+        g.drawImage(bgimg, 0, 0, getWidth(), getHeight(), this);
+    }  
 
-	JLabel lblPwdLength = new JLabel("Password Length: ");
-	JLabel lblIncludes = new JLabel("Include: ");
-	JLabel lblGenPassword = new JLabel("Generated Password:");
-
+	
 	JButton btnGenerate = new JButton("Generate");
 	JButton btnBack = new JButton("Back");
 
-	JCheckBox chkboxSymbols = new JCheckBox("Symbols");
-	JCheckBox chkboxNumbers = new JCheckBox("Numbers");
-	JCheckBox chkboxLowercaseLetters = new JCheckBox("Lowercase Letters");
-	JCheckBox chkboxUppercaseLetters = new JCheckBox("Uppercase Letters");
+	JCheckBox chkboxSymbols = new JCheckBox();
+	JCheckBox chkboxNumbers = new JCheckBox();
+	JCheckBox chkboxLowercaseLetters = new JCheckBox();
+	JCheckBox chkboxUppercaseLetters = new JCheckBox();
 	
-	JTextArea txtArPassword = new JTextArea(2,1);
+	JTextArea txtArPassword = new JTextArea(1,1);
 	
 	JScrollPane scrlPane = new JScrollPane(txtArPassword);
 
 	JSlider sldPwdLength = new JSlider(JSlider.HORIZONTAL, 8, 32, 12);
 
-	JPanel p1 = new JPanel();
-	JPanel p2 = new JPanel();
-	JPanel p3 = new JPanel();
-	JPanel p4 = new JPanel();
-	JPanel p5 = new JPanel();
-
-	LoggedInUser loggedUser;
-	
+        LoggedInUser loggedUser;
+        
 	public PasswordGenWindow(LoggedInUser lu)
 	{
 		
-		this.setLayout(new FlowLayout());
-		this.setResizable(false);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(750, 500);
-		this.setLocationRelativeTo(null);
-		this.getContentPane().setBackground(Color.WHITE);
-		
-		this.sldPwdLength.setMajorTickSpacing(10);
-		this.sldPwdLength.setMinorTickSpacing(2);
-		this.sldPwdLength.setPaintTicks(true);
-		this.sldPwdLength.setPaintLabels(true);
+		setLayout(null);
 		
 		
+		sldPwdLength.setMajorTickSpacing(10);
+		sldPwdLength.setMinorTickSpacing(2);
+		sldPwdLength.setPaintTicks(true);
+		sldPwdLength.setPaintLabels(true);
+                
+		sldPwdLength.setBounds(200,220,200,100);
+		sldPwdLength.setForeground(Color.WHITE);
+                sldPwdLength.setBackground(Color.WHITE);
 		Border border = BorderFactory.createLineBorder(Color.BLACK);
 		txtArPassword.setBorder(BorderFactory.createCompoundBorder(border, 
 		            BorderFactory.createEmptyBorder(10, 10, 50, 300)));
 		
 		txtArPassword.setEditable(false);
 		
-		scrlPane.setBounds(5, 5, 300,50);
+		scrlPane.setBounds(55,535,350,50);
+		chkboxSymbols.setBounds(80,355,23,23);
+		chkboxNumbers.setBounds(250,355,23,23);
+                chkboxLowercaseLetters.setBounds(80,393,23,23);
+                chkboxUppercaseLetters.setBounds(250,393,23,23);
+                
+                btnGenerate.setBounds(120,462,100,35);
+                btnBack.setBounds(230,462,100,35);
+                
+		add(sldPwdLength);
+		add(chkboxSymbols);
+		add(chkboxNumbers);
+		add(chkboxLowercaseLetters);
+		add(chkboxUppercaseLetters);
 		
-		p1.setBackground(Color.WHITE);
-		p1.add(lblPwdLength);
-		p1.add(sldPwdLength);
+		add(btnGenerate);
+		add(btnBack);
 
-		p2.setBackground(Color.WHITE);
-		p2.add(lblIncludes);
-
-		p3.setBackground(Color.WHITE);
-		p3.add(chkboxSymbols);
-		p3.add(chkboxNumbers);
-		p3.add(chkboxLowercaseLetters);
-		p3.add(chkboxUppercaseLetters);
+		add(scrlPane);
 		
-//		p4.setBackground(Color.WHITE);
-//		p4.add(displayPassword);
-		
-		p5.setBackground(Color.WHITE);
-		p5.add(btnGenerate);
-		p5.add(btnBack);
-
-		p4.setBackground(Color.WHITE);
-		p4.add(scrlPane);
-		
-		add(p1);
-		add(p2);
-		add(p3);
-		add(p5);
-		add(p4);
 
 		this.btnBack.addActionListener(this);
 		this.btnGenerate.addActionListener(this);
-
-		this.loggedUser = lu;
 		
+                this.loggedUser = lu;
 	}
 	
 	
@@ -118,10 +103,14 @@ public class PasswordGenWindow extends JFrame implements ActionListener
 		{
 		
 		case "Back":
-			NavigationWindow x = new NavigationWindow(loggedUser);
-			x.setVisible(true);
-			this.dispose();
-			this.setVisible(false);
+                    
+                    mainFrame.getContentPane().removeAll();
+                       
+                    NavigationWindow x = new NavigationWindow(loggedUser);
+                    mainFrame.add(x);
+                    mainFrame.getContentPane().invalidate();
+                    mainFrame.getContentPane().validate();		
+			
 		break;
 			
 		case "Generate":
@@ -161,7 +150,7 @@ public class PasswordGenWindow extends JFrame implements ActionListener
 			}
 			catch(Exception e)
 			{
-				JOptionPane.showMessageDialog(null, "Please enter a length for the password");
+				JOptionPane.showMessageDialog(null, "Please specify at least one password requirement");
 			}
 
         break;

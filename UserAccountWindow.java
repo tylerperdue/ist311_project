@@ -1,3 +1,6 @@
+
+package credentialmanagementapplication;
+
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -11,7 +14,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 
-public class UserAccountWindow extends JFrame implements ActionListener
+public class UserAccountWindow extends JPanel implements ActionListener
 {
 
 	// Define JLabels, JButtons, JTextFields....
@@ -20,12 +23,6 @@ public class UserAccountWindow extends JFrame implements ActionListener
 	public UserAccountWindow()
 	{
 		
-		this.setLayout(new FlowLayout());
-		this.setResizable(false);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(500, 340);
-		this.setLocationRelativeTo(null);
-		this.getContentPane().setBackground(Color.WHITE);
 		
 		
 		// // p1.setBackground(Color.WHITE);
