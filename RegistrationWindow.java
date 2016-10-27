@@ -1,23 +1,11 @@
-package credentialmanagementapplication;
-
-import static credentialmanagementapplication.CredentialManagementApplication.t;
-import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.Graphics;
-import java.awt.GridLayout;
-import java.awt.Window;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
 import javax.imageio.ImageIO;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
-
+import javax.swing.*;
 
 public class RegistrationWindow extends JPanel 
 {
@@ -81,14 +69,14 @@ public class RegistrationWindow extends JPanel
 		{
 		case "Cancel":
 			 ((Window) getRootPane().getParent()).dispose();
-                         t.setEnabled(true); 
+                         CredentialManagementApplication.t.setEnabled(true); 
 		break;
 		
 		case "OK":
                
                     //TODO: Add logic to check if passwords match
                     //TODO: Add logic to grab field data and store in excel sheet or list
-                    t.setEnabled(true); 	// open the Login window 
+                    CredentialManagementApplication.t.setEnabled(true); 	// open the Login window 
 			((Window) getRootPane().getParent()).dispose();
 			//this.setVisible(false);	// set the current frame to invisible 
 			System.out.println("OK");

@@ -1,13 +1,9 @@
-package credentialmanagementapplication;
-
-import static credentialmanagementapplication.CredentialManagementApplication.t;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Arrays;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
@@ -84,7 +80,7 @@ public class LoginWindow extends JPanel
 				NavigationWindow x = new NavigationWindow(lu);
                                 x.setVisible(true);
 				//MainFrame x = new MainFrame();
-                                t.dispose();
+                                CredentialManagementApplication.t.dispose();
 			}else{
 				JOptionPane.showMessageDialog(null, "Username and/or password incorrect.");
                                 usernameTxtField.setText("");
@@ -95,7 +91,7 @@ public class LoginWindow extends JPanel
 			//TODO: Add logic to check login information with excel sheet or list
 			break;
 		case "Create New Account":
-                        t.setEnabled(false);
+                        CredentialManagementApplication.t.setEnabled(false);
                         JFrame registrationWindow = new JFrame();
                         
                         registrationWindow.setSize(340, 410);

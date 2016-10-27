@@ -1,5 +1,3 @@
-package credentialmanagementapplication;
-
 import javax.swing.*;
 import java.awt.*;
 

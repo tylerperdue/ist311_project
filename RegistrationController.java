@@ -1,5 +1,3 @@
-package credentialmanagementapplication;
-
 import java.io.File;
 import java.util.Scanner;
 import java.util.ArrayList;
