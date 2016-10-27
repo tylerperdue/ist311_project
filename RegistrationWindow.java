@@ -2,8 +2,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
@@ -11,9 +13,9 @@ public class RegistrationWindow extends JPanel
 {
     private Handler handler = new Handler();
   
-    static BufferedImage bgimg = null;{
+    static Image bgimg = null;{
         try {
-                bgimg = ImageIO.read(new URL("http://i.imgur.com/Jr2kf94.png"));
+                bgimg = ImageIO.read(new File("Jr2kf94.png"));
         } catch (IOException e) {
                 System.out.println("Error");
         }}

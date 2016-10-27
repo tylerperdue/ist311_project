@@ -1,8 +1,10 @@
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
@@ -24,9 +26,9 @@ public class NavigationWindow extends JPanel
     LoggedInUser loggedUser;
     
      //background image pulled from URL
-       static BufferedImage bgimg = null;{
+       static Image bgimg = null;{
         try {
-                bgimg = ImageIO.read(new URL("http://i.imgur.com/hon1nZd.png"));
+                bgimg = ImageIO.read(new File("hon1nZd.png"));
         } catch (IOException e) {
                 System.out.println("Error");
         }}

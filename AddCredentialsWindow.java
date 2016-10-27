@@ -2,11 +2,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+
 import javax.imageio.ImageIO;
-
-
 import javax.swing.*;
 
 
@@ -14,9 +14,9 @@ import javax.swing.*;
 public class AddCredentialsWindow extends JPanel implements ActionListener
 {
        //background image pulled from URL
-       static BufferedImage bgimg = null;{
+       static Image bgimg = null;{
         try {
-                bgimg = ImageIO.read(new URL("http://i.imgur.com/8Nrep2s.png"));
+                bgimg = ImageIO.read(new File("8Nrep2s.png"));
         } catch (IOException e) {
                 System.out.println("Error");
         }}
@@ -44,8 +44,8 @@ public class AddCredentialsWindow extends JPanel implements ActionListener
                 newUsernameTextfield.setBounds(233,257,130,35);
 		newPasswordTextfield.setBounds(233,307,130,35);
 		addButton.setBounds(190,540,90,35);
-		clearButton.setBounds(85,560,90,35);
-                backButton.setBounds(300,560,90,35);
+		backButton.setBounds(85,560,90,35);
+        		clearButton.setBounds(300,560,90,35);
                         
                 add(newUsernameTextfield);
                 add(newPasswordTextfield);

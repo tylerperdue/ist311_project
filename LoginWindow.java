@@ -2,8 +2,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
@@ -14,7 +16,7 @@ public class LoginWindow extends JPanel
         //background image pulled from URL
        static BufferedImage bgimg = null;{
         try {
-                bgimg = ImageIO.read(new URL("http://i.imgur.com/htBdPYl.png"));
+                bgimg = ImageIO.read(new File("htBdPYl.png"));
         } catch (IOException e) {
                 System.out.println("Error");
         }}
@@ -45,10 +47,10 @@ public class LoginWindow extends JPanel
         passwordField.setBounds(230, 356, 135, 35);
         add(usernameTxtField);
         add(passwordField);
-        btnLogin.setBounds(125, 427, 90, 35);
+        btnCancel.setBounds(125, 427, 90, 35);
         add(btnLogin);      
         btnLogin.addActionListener(handler);
-        btnCancel.setBounds(230, 427, 90, 35);
+        btnLogin.setBounds(230, 427, 90, 35);
         add(btnCancel);
         btnCancel.addActionListener(handler);
         btnNewAccount.setBounds(150, 473, 145, 35);

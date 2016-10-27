@@ -1,8 +1,10 @@
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -11,9 +13,9 @@ import javax.swing.border.Border;
 public class PasswordGenWindow extends JPanel implements ActionListener
 {
     //background image pulled from URL
-       static BufferedImage bgimg = null;{
+       static Image bgimg = null;{
         try {
-                bgimg = ImageIO.read(new URL("http://i.imgur.com/fIIfuBg.png"));
+                bgimg = ImageIO.read(new File("fIIfuBg.png"));
         } catch (IOException e) {
                 System.out.println("Error");
         }}
@@ -67,8 +69,8 @@ public class PasswordGenWindow extends JPanel implements ActionListener
                 chkboxLowercaseLetters.setBounds(80,393,23,23);
                 chkboxUppercaseLetters.setBounds(250,393,23,23);
                 
-                btnGenerate.setBounds(120,462,100,35);
-                btnBack.setBounds(230,462,100,35);
+                btnBack.setBounds(120,462,100,35);
+                btnGenerate.setBounds(230,462,100,35);
                 
 		add(sldPwdLength);
 		add(chkboxSymbols);
