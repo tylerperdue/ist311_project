@@ -9,15 +9,14 @@ public class MainFrame extends JFrame
     private NavigationWindow mp;
     LoggedInUser loggedUser;
     
-    MainFrame()
+    MainFrame(LoggedInUser lu)
     {
-        
+        this.loggedUser = lu;
         mp = new NavigationWindow(loggedUser);
         mainFrame.add(mp);
         mainFrame.setResizable(false);
         mainFrame.setLocation(400, 200);
         mainFrame.setSize(450, 650);
-//        mainFrame.setLocation(500, 150);
         mainFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
         mainFrame.setVisible(true);
         mainFrame.setTitle("Credential Manager - Team 6");

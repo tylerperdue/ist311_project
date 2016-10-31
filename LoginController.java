@@ -2,10 +2,6 @@ import java.io.File;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.io.FileNotFoundException;
-//import java.io.PrintWriter;
-//import java.io.BufferedWriter;
-//import java.io.FileWriter;
-//import java.io.IOException;
 
 public class LoginController{
 
