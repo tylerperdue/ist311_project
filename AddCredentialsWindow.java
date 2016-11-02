@@ -50,7 +50,7 @@ public class AddCredentialsWindow extends JPanel implements ActionListener
     JRadioButton rbWork = new JRadioButton("Work", false);
     JRadioButton rbFinances = new JRadioButton("Finances", false);
     
-   
+    JLabel lblCategories = new JLabel("Categories:");
         
 	LoggedInUser loggedUser;
 
@@ -66,23 +66,40 @@ public class AddCredentialsWindow extends JPanel implements ActionListener
     	backButton.setBounds(85,560,90,35);
         clearButton.setBounds(300,560,90,35);
         
-        rbPersonal.setBounds(100, 360, 100, 35);
+        lblCategories.setBounds(63, 347, 100, 35);
+        lblCategories.setFont(new Font("HELVETICA", Font.BOLD, 16));
+        lblCategories.setForeground(new Color(67, 211, 175));
+        
+        rbPersonal.setBounds(100, 370, 100, 35);
         rbPersonal.setForeground(Color.WHITE);
         
-        rbEmail.setBounds(200, 360, 100, 35);
+        rbEmail.setBounds(100, 400, 100, 35);
         rbEmail.setForeground(Color.WHITE);
+        
+        rbWork.setBounds(100, 430, 100, 35);
+        rbWork.setForeground(Color.WHITE);
+
+        rbFinances.setBounds(100, 460, 100, 35);
+        rbFinances.setForeground(Color.WHITE);
         
         
         categoriesGroup.add(rbPersonal);
         categoriesGroup.add(rbEmail);
+        categoriesGroup.add(rbWork);
+        categoriesGroup.add(rbFinances);
+        
         
         add(newUsernameTextfield);
         add(newPasswordTextfield);
         add(rbPersonal);
         add(rbEmail);
+        add(rbWork);
+        add(rbFinances);
         add(addButton);
         add(clearButton);
         add(backButton);
+        add(lblCategories);
+        
         
 
         addButton.addActionListener(this);
