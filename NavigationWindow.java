@@ -111,7 +111,7 @@ public class NavigationWindow extends JPanel
                 
                 else if (e.getSource() == passwordVaultButton) {
                     MainFrame.mainFrame.getContentPane().removeAll();
-                    PasswordVaultWindow pv = new PasswordVaultWindow();
+                    PasswordVaultWindow pv = new PasswordVaultWindow(loggedUser);
                     MainFrame.mainFrame.add(pv);
                     MainFrame.mainFrame.getContentPane().invalidate();
                     MainFrame.mainFrame.getContentPane().validate();

@@ -7,11 +7,13 @@ import java.io.IOException;
 import java.net.URL;
 
 import javax.imageio.ImageIO;
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JOptionPane;
@@ -40,6 +42,15 @@ public class AddCredentialsWindow extends JPanel implements ActionListener
     JButton addButton = new JButton("Add!");
     JButton clearButton = new JButton("Clear");
     JButton backButton = new JButton("Back");
+    
+    ButtonGroup categoriesGroup = new ButtonGroup();
+    
+    JRadioButton rbPersonal = new JRadioButton("Personal", true);
+    JRadioButton rbEmail = new JRadioButton("Email", false);
+    JRadioButton rbWork = new JRadioButton("Work", false);
+    JRadioButton rbFinances = new JRadioButton("Finances", false);
+    
+   
         
 	LoggedInUser loggedUser;
 
@@ -54,16 +65,32 @@ public class AddCredentialsWindow extends JPanel implements ActionListener
     	addButton.setBounds(190,540,90,35);
     	backButton.setBounds(85,560,90,35);
         clearButton.setBounds(300,560,90,35);
-                            
+        
+        rbPersonal.setBounds(100, 360, 100, 35);
+        rbPersonal.setForeground(Color.WHITE);
+        
+        rbEmail.setBounds(200, 360, 100, 35);
+        rbEmail.setForeground(Color.WHITE);
+        
+        
+        categoriesGroup.add(rbPersonal);
+        categoriesGroup.add(rbEmail);
+        
         add(newUsernameTextfield);
         add(newPasswordTextfield);
+        add(rbPersonal);
+        add(rbEmail);
         add(addButton);
         add(clearButton);
         add(backButton);
+        
 
         addButton.addActionListener(this);
         clearButton.addActionListener(this);
         backButton.addActionListener(this);
+        
+        
+        
 
         this.loggedUser = lu;
 
