@@ -9,24 +9,32 @@ import java.io.IOException;
 
 public class AddCredentialsController{
 
+	String strSysName;
+	String strCategory;
 	String newUsername; 
 	char[] newPassword;
 	LoggedInUser loggedUser;
 	boolean added = false;
 
-	public AddCredentialsController(LoggedInUser lu, String nU, char[] nP){
+	public AddCredentialsController(String ct, LoggedInUser lu, String sysN, String nU, char[] nP){
+		this.strCategory = ct;
 		this.newUsername = nU; 
 		this.newPassword = nP;
 		this.loggedUser = lu;
+		this.strSysName = sysN;
 	}
 
 	public boolean addCredential(){
 		String passwordString = new String(newPassword);
+		String categoryString = new String(strCategory);
+		String SystemNameString = new String(strSysName);
 		boolean credentialExists = false;
 		String user = loggedUser.getUser();
 		try {
 			PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("CREDENTIALS.txt", true)));
 			out.print(user + ";");
+			out.print(categoryString + ";");
+			out.print(SystemNameString + ";");
 			out.print(newUsername + ";");
 			out.print(passwordString);
 			out.println();

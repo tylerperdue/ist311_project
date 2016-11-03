@@ -18,38 +18,38 @@ public class PasswordVaultWindow extends JPanel implements ActionListener
 	
 
 	JLabel lblSelect = new JLabel("Select desired category and verify your identity:");
-	
 	JLabel lblVerification = new JLabel("Verify your identity:");
-	
 	JLabel lblUsername = new JLabel("Username:");
 	JLabel lblPassword = new JLabel("Password:");
-	
-
 	JLabel lblList = new JLabel("Please select a category:");
-	
-	
+
 	JButton btnAuthentication = new JButton("Authenticate");
+	
+	JButton btnBack = new JButton("< Back");
 	
 	JTextField txtUsername = new JTextField(10);
 	JPasswordField txtPassword = new JPasswordField(10);
 	
-	public static String[] strCategories = {"Personal", "Email", "Work", "Finances"};
+	String tempCategory;
+	
+	public static String[] strCategories = {"Work", "Finaces", "Personal", "Email"};
+	
 	
 	JComboBox cmbCategories = new JComboBox(strCategories);
 	
 	LoggedInUser loggedUser;
-	
 
 	
-
+//	
+//	public void readFromTxt()
+//	{
+//		for(int i = 0; i < )
+//	}
 	
 	public PasswordVaultWindow(LoggedInUser lu)
 	{
 		
 
-		
-
-		
 //		list.setVisibleRowCount(3);
 //		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
@@ -65,7 +65,9 @@ public class PasswordVaultWindow extends JPanel implements ActionListener
 		add(txtPassword);
 		add(btnAuthentication);
 		add(lblList);
+		add(btnBack);
 		add(cmbCategories);
+		
 		
 		System.out.println(this.cmbCategories.getSelectedItem());
 
@@ -75,7 +77,7 @@ public class PasswordVaultWindow extends JPanel implements ActionListener
 		
 		
 		this.btnAuthentication.addActionListener(this);
-
+		this.btnBack.addActionListener(this);
 		
 
 		// this.btnPwdGenerator.addActionListener(this);
@@ -106,7 +108,9 @@ public class PasswordVaultWindow extends JPanel implements ActionListener
 					JOptionPane.showMessageDialog(null, "Username matched! (Test)");
 					JOptionPane.showMessageDialog(null, "Authenticated!");
 					
-					
+					tempCategory = cmbCategories.getSelectedItem().toString();
+					passwordVaultController pv = new passwordVaultController(txtUsername.getText(), tempCategory, "facebook");
+					pv.readCredentials();
 					
 				}
 				else
@@ -121,25 +125,17 @@ public class PasswordVaultWindow extends JPanel implements ActionListener
 			}
 			
 		break;
-		case "Password Generator":
-
-		break;
-			
-		case "Password Vault":
-
-        break;
-
-		case "Add Credentials":
-
-		break;	
-
-		case "User Account":
-
-		break;
-
-		case "Logout":
-
-		break;		
+		
+		case "< Back":
+	        MainFrame.mainFrame.getContentPane().removeAll();
+            
+            NavigationWindow x = new NavigationWindow(loggedUser);
+            MainFrame.mainFrame.add(x);
+            MainFrame.mainFrame.getContentPane().invalidate();
+            MainFrame.mainFrame.getContentPane().validate();
+			break;
+		default:
+			System.out.println("Error");
 		}
 	}
 }

@@ -28,7 +28,7 @@ public class PasswordGenWindow extends JPanel implements ActionListener
 
 	
 	JButton btnGenerate = new JButton("Generate");
-	JButton btnBack = new JButton("Back");
+	JButton btnBack = new JButton("< Back");
 
 	JCheckBox chkboxSymbols = new JCheckBox();
 	JCheckBox chkboxNumbers = new JCheckBox();
@@ -56,7 +56,7 @@ public class PasswordGenWindow extends JPanel implements ActionListener
                 
 		sldPwdLength.setBounds(200,220,200,100);
 		sldPwdLength.setForeground(Color.WHITE);
-                sldPwdLength.setBackground(Color.WHITE);
+        sldPwdLength.setBackground(Color.WHITE);
 		Border border = BorderFactory.createLineBorder(Color.BLACK);
 		txtArPassword.setBorder(BorderFactory.createCompoundBorder(border, 
 		            BorderFactory.createEmptyBorder(10, 10, 50, 300)));
@@ -100,7 +100,7 @@ public class PasswordGenWindow extends JPanel implements ActionListener
 		switch(ae.getActionCommand())
 		{
 		
-		case "Back":
+		case "< Back":
                     
                     MainFrame.mainFrame.getContentPane().removeAll();
                        
