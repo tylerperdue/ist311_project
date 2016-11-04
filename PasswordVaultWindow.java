@@ -109,7 +109,7 @@ public class PasswordVaultWindow extends JPanel implements ActionListener
 					JOptionPane.showMessageDialog(null, "Authenticated!");
 					
 					tempCategory = cmbCategories.getSelectedItem().toString();
-					passwordVaultController pv = new passwordVaultController(txtUsername.getText(), tempCategory, "facebook");
+					PasswordVaultController pv = new PasswordVaultController(txtUsername.getText(), tempCategory, "facebook");
 					pv.readCredentials();
 					
 				}

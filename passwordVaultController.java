@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.io.FileNotFoundException;
 
 
-public class passwordVaultController 
+public class PasswordVaultController 
 {
 	
 	String strCategory;
@@ -15,7 +15,7 @@ public class passwordVaultController
 	String strSystemName;
 	
 
-	public passwordVaultController(String currentUsername,
+	public PasswordVaultController(String currentUsername,
 			String selectedCategory, String sysName)
 	{
 		strCategory = selectedCategory;
