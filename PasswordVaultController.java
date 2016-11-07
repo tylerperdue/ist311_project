@@ -3,6 +3,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 import java.io.FileNotFoundException;
 
 
@@ -30,35 +31,36 @@ public class PasswordVaultController
 			
 		Scanner fileIn = new Scanner(new File("CREDENTIALS.txt"));
 		ArrayList<String> username = new ArrayList<String>();
-		String[] parts;
 		String tempSemicCapture;
-		String firstPart;
-	//	String secondPart;
+		String tempLine;
 		
 		while(fileIn.hasNextLine())
 		{
-			username.add(fileIn.nextLine());
+			tempLine = fileIn.nextLine().toString(); // store the line in tempLine variable
+			if(!(tempLine.isEmpty()))	// if the tempLine is not empty, then add tempLine to the ArrayList
+			username.add(tempLine);
 		}
 		
 		for(int i = 0; i < username.size(); i++)
 		{
-			tempSemicCapture = username.get(i);
-			parts = tempSemicCapture.split(";");
-			firstPart = parts[0];
-			//secondPart = parts[1];
 			
-			System.out.println("Array " + i + ":" + username.get(i));
-			
-			if(firstPart.equals(strUsername))
+			tempSemicCapture = username.get(i).toString();
+			String parts[] = tempSemicCapture.split(";");
+		
+		System.out.println("Array " + i + ":" + username.get(i));
+		
+			if(parts[0].equals(strUsername))
 			{
-				System.out.println("Captured: " + firstPart);
+				System.out.println("Current Username: " + parts[0]);
+				System.out.println("Category: " + parts[1]);
+				System.out.println("System Name: " + parts[2]);
+				System.out.println("Credential Name: " + parts[3]);
+				System.out.println("Credential Password: " + parts[4]);
 			}
-			
-		}
-		
 		
 		}
-		catch(FileNotFoundException e)
+		
+		}catch(FileNotFoundException e)
 		{
 			System.err.println("Error");
 			System.out.println(e.getMessage());
