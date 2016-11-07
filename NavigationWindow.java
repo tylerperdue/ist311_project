@@ -131,11 +131,15 @@ public class NavigationWindow extends JPanel
                     MainFrame.mainFrame.getContentPane().validate();
                 }
                 else if (e.getSource() == logoutButton) {
-                    MainFrame.mainFrame.getContentPane().removeAll();
-                    LoginWindow lo = new LoginWindow();
-                    MainFrame.mainFrame.add(lo);
-                    MainFrame.mainFrame.getContentPane().invalidate();
-                    MainFrame.mainFrame.getContentPane().validate();
+//                    MainFrame.mainFrame.getContentPane().removeAll();
+//                    LoginWindow lo = new LoginWindow();
+//                    MainFrame.mainFrame.add(lo);
+//                    MainFrame.mainFrame.getContentPane().invalidate();
+//                    MainFrame.mainFrame.getContentPane().validate();
+                	
+                	System.exit(0);
+           
+                	
                 }
             }
             
