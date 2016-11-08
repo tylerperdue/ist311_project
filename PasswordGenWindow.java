@@ -56,7 +56,7 @@ public class PasswordGenWindow extends JPanel implements ActionListener
                 
 		sldPwdLength.setBounds(200,220,200,100);
 		sldPwdLength.setForeground(Color.WHITE);
-        sldPwdLength.setBackground(Color.WHITE);
+                sldPwdLength.setBackground(Color.WHITE);
 		Border border = BorderFactory.createLineBorder(Color.BLACK);
 		txtArPassword.setBorder(BorderFactory.createCompoundBorder(border, 
 		            BorderFactory.createEmptyBorder(10, 10, 50, 300)));
@@ -69,8 +69,8 @@ public class PasswordGenWindow extends JPanel implements ActionListener
                 chkboxLowercaseLetters.setBounds(80,393,23,23);
                 chkboxUppercaseLetters.setBounds(250,393,23,23);
                 
-                btnBack.setBounds(120,462,100,35);
-                btnGenerate.setBounds(230,462,100,35);
+                btnBack.setBounds(230,462,100,35);
+                btnGenerate.setBounds(120,462,100,35);
                 
 		add(sldPwdLength);
 		add(chkboxSymbols);

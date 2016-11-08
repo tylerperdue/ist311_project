@@ -19,8 +19,8 @@ public class CredentialManagementApplication extends JFrame {
    
     setContentPane(loginWindow);
     setResizable(false);
+    setLocation(400, 200);
     setSize(450, 650);
-    setLocation(500, 150);
     setDefaultCloseOperation(EXIT_ON_CLOSE);
     setTitle("Credential Manager - Team 6");
     

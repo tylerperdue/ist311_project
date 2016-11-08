@@ -118,14 +118,14 @@ public class NavigationWindow extends JPanel
                 }
                 else if (e.getSource() == userAccountButton) {
                     MainFrame.mainFrame.getContentPane().removeAll();
-                    UserAccountWindow ua = new UserAccountWindow();
+                    UserAccountWindow ua = new UserAccountWindow(loggedUser);
                     MainFrame.mainFrame.add(ua);
                     MainFrame.mainFrame.getContentPane().invalidate();
                     MainFrame.mainFrame.getContentPane().validate();
                 }
                 else if (e.getSource() == searchButton) {
                     MainFrame.mainFrame.getContentPane().removeAll();
-                    SearchResultsWindow s = new SearchResultsWindow();
+                    SearchResultsWindow s = new SearchResultsWindow(loggedUser);
                     MainFrame.mainFrame.add(s);
                     MainFrame.mainFrame.getContentPane().invalidate();
                     MainFrame.mainFrame.getContentPane().validate();

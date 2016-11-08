@@ -1,38 +1,47 @@
-import java.awt.Color;
-import java.awt.FlowLayout;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.border.Border;
+
 
 
 
 public class PasswordVaultWindow extends JPanel implements ActionListener
 {
 
+     //background image pulled from URL
+       static Image bgimg = null;{
+        try {
+                bgimg = ImageIO.read(new File("PasswordVault.png"));
+        } catch (IOException e) {
+                System.out.println("Error");
+        }}
+       
+       //paint method that will paint background
+    @Override
+    public void paintComponent(Graphics g) {
+        g.drawImage(bgimg, 0, 0, getWidth(), getHeight(), this);
+    }  
+
 	// Define JLabels, JButtons, JTextFields....
-
-	
-
-	JLabel lblSelect = new JLabel("Select desired category and verify your identity:");
-	JLabel lblVerification = new JLabel("Verify your identity:");
-	JLabel lblUsername = new JLabel("Username:");
-	JLabel lblPassword = new JLabel("Password:");
-	JLabel lblList = new JLabel("Please select a category:");
 
 	JButton btnAuthentication = new JButton("Authenticate");
 	
 	JButton btnBack = new JButton("< Back");
 	
-	JTextField txtUsername = new JTextField(10);
-	JPasswordField txtPassword = new JPasswordField(10);
+	JTextField txtUsername = new JTextField();
+	JPasswordField txtPassword = new JPasswordField();
 	
+        JTextField retrievedUsername = new JTextField();
+        JTextField retrievedPassword = new JTextField();
+        
 	String tempCategory;
 	
-	public static String[] strCategories = {"Work", "Finaces", "Personal", "Email"};
+	public static String[] strCategories = {"Work", "Finances", "Personal", "Email"};
 	
 	
 	JComboBox cmbCategories = new JComboBox(strCategories);
@@ -53,21 +62,22 @@ public class PasswordVaultWindow extends JPanel implements ActionListener
 //		list.setVisibleRowCount(3);
 //		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
+                setLayout(null);
 		
-		
-
-		
-		add(lblSelect);
-		add(lblVerification);
-		add(lblUsername);
+                txtUsername.setBounds(185,330,135,30);
 		add(txtUsername);
-		add(lblPassword);
+                txtPassword.setBounds(185,367,135,30);
 		add(txtPassword);
+                btnAuthentication.setBounds(170,400,120,35);
 		add(btnAuthentication);
-		add(lblList);
+                btnBack.setBounds(190,550,90,35);
 		add(btnBack);
+                cmbCategories.setBounds(200,250,135,35);
 		add(cmbCategories);
-		
+                retrievedUsername.setBounds(250,450,135,30);
+                add(retrievedUsername);        
+                retrievedPassword.setBounds(250,495,135,30);
+		add(retrievedPassword);
 		
 		System.out.println(this.cmbCategories.getSelectedItem());
 
@@ -79,12 +89,6 @@ public class PasswordVaultWindow extends JPanel implements ActionListener
 		this.btnAuthentication.addActionListener(this);
 		this.btnBack.addActionListener(this);
 		
-
-		// this.btnPwdGenerator.addActionListener(this);
-		// this.btnPwdVault.addActionListener(this);
-		// this.btnAddCredentials.addActionListener(this);
-		// this.btnUserAccount.addActionListener(this);
-		// this.btnLogout.addActionListener(this);
 	}
 	
 	
