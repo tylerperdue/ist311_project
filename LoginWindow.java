@@ -23,7 +23,7 @@ public class LoginWindow extends JPanel
     //background image pulled from URL
     static BufferedImage bgimg = null;{
         try {
-            bgimg = ImageIO.read(new File("htBdPYl.png"));
+            bgimg = ImageIO.read(LoginWindow.class.getResource("htBdPYl.png"));
         }catch (IOException e){
             System.out.println("Error");
         }   

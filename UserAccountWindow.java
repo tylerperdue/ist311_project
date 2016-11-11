@@ -16,7 +16,7 @@ public class UserAccountWindow extends JPanel implements ActionListener
         //background image pulled from file
        static Image bgimg = null;{
         try {
-                bgimg = ImageIO.read(new File("UserAccount.png"));
+                bgimg = ImageIO.read(LoginWindow.class.getResource("UserAccount.png"));
         } catch (IOException e) {
                 System.out.println("Error");
         }}

@@ -15,7 +15,7 @@ public class RegistrationWindow extends JPanel
   
     static Image bgimg = null;{
         try {
-                bgimg = ImageIO.read(new File("Jr2kf94.png"));
+                bgimg = ImageIO.read(LoginWindow.class.getResource("Jr2kf94.png"));
         } catch (IOException e) {
                 System.out.println("Error");
         }}

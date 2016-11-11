@@ -25,7 +25,7 @@ public class AddCredentialsWindow extends JPanel implements ActionListener
    //background image pulled from URL
    static Image bgimg = null;{
         try {
-            bgimg = ImageIO.read(new File("8Nrep2s.png"));
+            bgimg = ImageIO.read(LoginWindow.class.getResource("8Nrep2s.png"));
         }catch (IOException e){
                 System.out.println("Error");
         }

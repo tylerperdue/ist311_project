@@ -28,7 +28,7 @@ public class NavigationWindow extends JPanel
      //background image pulled from URL
        static Image bgimg = null;{
         try {
-                bgimg = ImageIO.read(new File("hon1nZd.png"));
+                bgimg = ImageIO.read(LoginWindow.class.getResource("hon1nZd.png"));
         } catch (IOException e) {
                 System.out.println("Error");
         }}
@@ -136,8 +136,13 @@ public class NavigationWindow extends JPanel
 //                    MainFrame.mainFrame.add(lo);
 //                    MainFrame.mainFrame.getContentPane().invalidate();
 //                    MainFrame.mainFrame.getContentPane().validate();
-                	
-                	System.exit(0);
+
+                        Object[] options = {"Yes", "No"};
+                        int a = JOptionPane.showOptionDialog(null, "Are you sure you want to logout?", "", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]);
+                	if(a == JOptionPane.YES_OPTION)
+                            System.exit(0);
+                        else
+                        {}
            
                 	
                 }
