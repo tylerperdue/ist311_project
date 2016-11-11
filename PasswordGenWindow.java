@@ -16,8 +16,9 @@ public class PasswordGenWindow extends JPanel implements ActionListener
        static Image bgimg = null;{
         try {
                 bgimg = ImageIO.read(LoginWindow.class.getResource("fIIfuBg.png"));
-        } catch (IOException e) {
-                System.out.println("Error");
+        } 
+        catch (IOException e) {
+                System.out.println("Image not found");
         }}
        
        //paint method that will paint background
@@ -28,7 +29,7 @@ public class PasswordGenWindow extends JPanel implements ActionListener
 
 	
 	JButton btnGenerate = new JButton("Generate");
-	JButton btnBack = new JButton("< Back");
+	JButton btnBack = new JButton("<");
 
 	JCheckBox chkboxSymbols = new JCheckBox();
 	JCheckBox chkboxNumbers = new JCheckBox();
@@ -50,13 +51,12 @@ public class PasswordGenWindow extends JPanel implements ActionListener
 		
 		
 		sldPwdLength.setMajorTickSpacing(10);
-		sldPwdLength.setMinorTickSpacing(2);
-		sldPwdLength.setPaintTicks(true);
-		sldPwdLength.setPaintLabels(true);
+		sldPwdLength.setMinorTickSpacing(1);
                 
 		sldPwdLength.setBounds(200,220,200,100);
-		sldPwdLength.setForeground(Color.WHITE);
-                sldPwdLength.setBackground(Color.WHITE);
+                sldPwdLength.setPaintTicks(true);
+		sldPwdLength.setPaintLabels(true);
+                
 		Border border = BorderFactory.createLineBorder(Color.BLACK);
 		txtArPassword.setBorder(BorderFactory.createCompoundBorder(border, 
 		            BorderFactory.createEmptyBorder(10, 10, 50, 300)));
@@ -81,15 +81,13 @@ public class PasswordGenWindow extends JPanel implements ActionListener
 		add(btnGenerate);
 		add(btnBack);
 
-		add(scrlPane);
-		
+		add(scrlPane);		
 
 		this.btnBack.addActionListener(this);
 		this.btnGenerate.addActionListener(this);
 		
                 this.loggedUser = lu;
-	}
-	
+        }
 	
 	public void actionPerformed(ActionEvent ae)
 	{
@@ -100,8 +98,7 @@ public class PasswordGenWindow extends JPanel implements ActionListener
 		switch(ae.getActionCommand())
 		{
 		
-		case "< Back":
-                    
+		case "<": 
                     MainFrame.mainFrame.getContentPane().removeAll();
                        
                     NavigationWindow x = new NavigationWindow(loggedUser);
@@ -112,47 +109,36 @@ public class PasswordGenWindow extends JPanel implements ActionListener
 		break;
 			
 		case "Generate":
-			System.out.println(sldPwdLength.getValue());
-			System.out.println(chkboxUppercaseLetters.isSelected());
-			
 			nLength = sldPwdLength.getValue();
 			try{
 				
 				String strGeneratedPassword = "";
 				String strCapture = "";
-				
-				
-				
 				for(int i = 0; i < 50; i++)
-				{
-					
+                                {	
 					for(int j = 0; j < 10; j++)
 					{
 						strGeneratedPassword +=   Generator.GenerateCapLetters(1, this.chkboxUppercaseLetters.isSelected()) +
-												  Generator.GenerateSmallLetters(1, this.chkboxLowercaseLetters.isSelected()) +
-												  Generator.GenerateNumbers(1, this.chkboxNumbers.isSelected()) +
-												  Generator.GenerateSymbols(1, this.chkboxSymbols.isSelected());
+                                                                          Generator.GenerateSmallLetters(1, this.chkboxLowercaseLetters.isSelected()) +
+                                                                          Generator.GenerateNumbers(1, this.chkboxNumbers.isSelected()) +
+                                                                          Generator.GenerateSymbols(1, this.chkboxSymbols.isSelected());
 					}
-					strGeneratedPassword +=  	 Generator.GenerateCapLetters(2, this.chkboxUppercaseLetters.isSelected()) +
-												 Generator.GenerateSmallLetters(2, this.chkboxLowercaseLetters.isSelected()) +
-												 Generator.GenerateNumbers(2, this.chkboxNumbers.isSelected()) +
-												 Generator.GenerateSymbols(2, this.chkboxSymbols.isSelected());
+                                        strGeneratedPassword += Generator.GenerateCapLetters(2, this.chkboxUppercaseLetters.isSelected()) +
+                                                                Generator.GenerateSmallLetters(2, this.chkboxLowercaseLetters.isSelected()) +
+                                                                Generator.GenerateNumbers(2, this.chkboxNumbers.isSelected()) +
+                                                                Generator.GenerateSymbols(2, this.chkboxSymbols.isSelected());
 				
 					strCapture = strCapture + String.valueOf(strGeneratedPassword);
 				}
 				
 				
-				this.txtArPassword.setText(strCapture.substring(0, nLength));
-
-				
+				this.txtArPassword.setText(strCapture.substring(0, nLength));	
 			}
 			catch(Exception e)
 			{
 				JOptionPane.showMessageDialog(null, "Please specify at least one password requirement");
 			}
-
-        break;
-	
+        break;	
 		}
 	}
 }

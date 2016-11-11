@@ -19,7 +19,6 @@ public class NavigationWindow extends JPanel
     private JButton addCredentialButton = new JButton();
     private JButton userAccountButton = new JButton();
     
-    private JTextField searchBar = new JTextField();
     private JButton searchButton = new JButton("Search");
     private JButton logoutButton = new JButton("Log Out");
     
@@ -72,12 +71,9 @@ public class NavigationWindow extends JPanel
        userAccountButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
        add(userAccountButton);
 
-       searchBar.setBounds(75,538,100,30);
-       searchBar.setEditable(true);
-       add(searchBar);
-       searchButton.setBounds(175,538,100,30);
+       searchButton.setBounds(85,538,100,30);
        add(searchButton);
-       logoutButton.setBounds(320,538,100,30);
+       logoutButton.setBounds(270,538,100,30);
        add(logoutButton);
        
        addCredentialButton.addActionListener(handler);
@@ -131,12 +127,8 @@ public class NavigationWindow extends JPanel
                     MainFrame.mainFrame.getContentPane().validate();
                 }
                 else if (e.getSource() == logoutButton) {
-//                    MainFrame.mainFrame.getContentPane().removeAll();
-//                    LoginWindow lo = new LoginWindow();
-//                    MainFrame.mainFrame.add(lo);
-//                    MainFrame.mainFrame.getContentPane().invalidate();
-//                    MainFrame.mainFrame.getContentPane().validate();
-
+                    
+                    //asking if the user wants to logout
                         Object[] options = {"Yes", "No"};
                         int a = JOptionPane.showOptionDialog(null, "Are you sure you want to logout?", "", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]);
                 	if(a == JOptionPane.YES_OPTION)

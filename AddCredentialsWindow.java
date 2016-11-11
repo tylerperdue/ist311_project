@@ -42,9 +42,9 @@ public class AddCredentialsWindow extends JPanel implements ActionListener
 	JTextField newUsernameTextfield = new JTextField();
 	JTextField txtSysName = new JTextField(10);
     JPasswordField newPasswordTextfield = new JPasswordField();
-    JButton addButton = new JButton("Add!");
+    JButton addButton = new JButton("Add");
     JButton clearButton = new JButton("Clear");
-    JButton backButton = new JButton("< Back");
+    JButton backButton = new JButton("<");
     
     ButtonGroup categoriesGroup = new ButtonGroup();
     
@@ -162,12 +162,10 @@ public class AddCredentialsWindow extends JPanel implements ActionListener
 	{
 		switch(ae.getActionCommand())
 		{
-    		case "Add!":
+    		case "Add":
     			
     			if(!(getRadioButtonValue().equals("")) && !(newUsernameTextfield.getText().equals("")) && !(newPasswordTextfield.getText().equals("")) && !(txtSysName.getText().equals("")))
-    			{
-    				
-    			
+    			{	
                 AddCredentialsController x = new AddCredentialsController(getRadioButtonValue(),loggedUser, txtSysName.getText(), newUsernameTextfield.getText(), 
                 newPasswordTextfield.getPassword());
     			boolean added = x.addCredential();
@@ -193,7 +191,7 @@ public class AddCredentialsWindow extends JPanel implements ActionListener
 
             break;
 
-    		case "< Back":
+    		case "<":
                 MainFrame.mainFrame.getContentPane().removeAll();
                    
                 NavigationWindow z = new NavigationWindow(loggedUser);

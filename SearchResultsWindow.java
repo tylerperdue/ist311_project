@@ -64,7 +64,7 @@ public void actionPerformed(ActionEvent ae)
 		{
 		
 		case "Search":
-                   //todo
+                   SearchWindowController swc = new SearchWindowController(searchBar.getText());
 		break;
 			
 		case "Clear":
