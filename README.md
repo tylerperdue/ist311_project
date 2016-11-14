@@ -9,7 +9,7 @@ TODO:
 - Add encryption class, methods, algorithms
 - Apply encryption so text files are encrypted with closing of application and decrypted with the opening of the application
 
-Cool stuf to do if we get everything else done
+Cool stuff to do if we get everything else done
 - Edit credentials
 - Different types of credentials
 - Add a randomly generated password to the password vault
