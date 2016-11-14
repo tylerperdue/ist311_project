@@ -16,7 +16,7 @@ public class PasswordVaultWindow extends JPanel implements ActionListener
      //background image pulled from URL
        static Image bgimg = null;{
         try {
-                bgimg = ImageIO.read(LoginWindow.class.getResource("PasswordVault.png"));
+                bgimg = ImageIO.read(new File("PasswordVault.png"));
         } catch (IOException e) {
                 System.out.println("Error");
         }}
@@ -29,12 +29,12 @@ public class PasswordVaultWindow extends JPanel implements ActionListener
 
 	// Define JLabels, JButtons, JTextFields....
 
-	JButton btnAuthentication = new JButton("Authenticate");
+//	JButton btnAuthentication = new JButton("Authenticate");
 	
 	JButton btnBack = new JButton("< Back");
 	
-	JTextField txtUsername = new JTextField();
-	JPasswordField txtPassword = new JPasswordField();
+	//JTextField txtUsername = new JTextField();
+	//JPasswordField txtPassword = new JPasswordField();
 	
         JTextField retrievedUsername = new JTextField();
         JTextField retrievedPassword = new JTextField();
@@ -42,10 +42,10 @@ public class PasswordVaultWindow extends JPanel implements ActionListener
 	String tempCategory;
 	
 	public static String[] strCategories = {"Work", "Finances", "Personal", "Email"};
-	
+	public static String[] strWebsites = {"Website 1", "Website 2"};
 	
 	JComboBox cmbCategories = new JComboBox(strCategories);
-	
+	JComboBox cmbWebsites = new JComboBox(strWebsites);
 	LoggedInUser loggedUser;
 
 	
@@ -64,19 +64,21 @@ public class PasswordVaultWindow extends JPanel implements ActionListener
 		
                 setLayout(null);
 		
-                txtUsername.setBounds(185,330,135,30);
-		add(txtUsername);
-                txtPassword.setBounds(185,367,135,30);
-		add(txtPassword);
-                btnAuthentication.setBounds(170,400,120,35);
-		add(btnAuthentication);
-                btnBack.setBounds(190,550,90,35);
+//                txtUsername.setBounds(185,330,135,30);
+//		add(txtUsername);
+//                txtPassword.setBounds(185,367,135,30);
+//		add(txtPassword);
+         //       btnAuthentication.setBounds(170,400,120,35);
+	//	add(btnAuthentication);
+                btnBack.setBounds(190,500,90,35);
 		add(btnBack);
-                cmbCategories.setBounds(200,250,135,35);
+                cmbCategories.setBounds(190,260,135,35);
 		add(cmbCategories);
-                retrievedUsername.setBounds(250,450,135,30);
+                cmbWebsites.setBounds(270,310,135,35);
+                add(cmbWebsites);
+                retrievedUsername.setBounds(250,403,160,30);
                 add(retrievedUsername);        
-                retrievedPassword.setBounds(250,495,135,30);
+                retrievedPassword.setBounds(250,450,160,30);
 		add(retrievedPassword);
 		
 		System.out.println(this.cmbCategories.getSelectedItem());
@@ -86,7 +88,7 @@ public class PasswordVaultWindow extends JPanel implements ActionListener
 		loggedUser = lu;
 		
 		
-		this.btnAuthentication.addActionListener(this);
+		//this.btnAuthentication.addActionListener(this);
 		this.btnBack.addActionListener(this);
 		
 	}
@@ -101,34 +103,34 @@ public class PasswordVaultWindow extends JPanel implements ActionListener
 		switch(ae.getActionCommand())
 		{
 		
-		case "Authenticate":
-			
-			if(txtUsername.getText().equals(loggedUser.getUser()))
-			{
-			LoginController lc = new LoginController(txtUsername.getText(), txtPassword.getPassword());
-			lc.authenticated = lc.authenticate();
-				if(lc.authenticated)
-				{
-					JOptionPane.showMessageDialog(null, "Username matched! (Test)");
-					JOptionPane.showMessageDialog(null, "Authenticated!");
-					
-					tempCategory = cmbCategories.getSelectedItem().toString();
-					PasswordVaultController pv = new PasswordVaultController(txtUsername.getText(), tempCategory, "facebook");
-					pv.readCredentials();
-					
-				}
-				else
-				{
-					JOptionPane.showMessageDialog(null, "Username and/or password incorrect.");
-					System.out.println("You cannot retrieve Information");
-				}
-			}
-			else
-			{
-				JOptionPane.showMessageDialog(null, "Your username does not match the current username! (Test)");
-			}
-			
-		break;
+//		case "Authenticate":
+//			
+//			if(txtUsername.getText().equals(loggedUser.getUser()))
+//			{
+//			LoginController lc = new LoginController(txtUsername.getText(), txtPassword.getPassword());
+//			lc.authenticated = lc.authenticate();
+//				if(lc.authenticated)
+//				{
+//					JOptionPane.showMessageDialog(null, "Username matched! (Test)");
+//					JOptionPane.showMessageDialog(null, "Authenticated!");
+//					
+//					tempCategory = cmbCategories.getSelectedItem().toString();
+//					PasswordVaultController pv = new PasswordVaultController(txtUsername.getText(), tempCategory, "facebook");
+//					pv.readCredentials();
+//					
+//				}
+//				else
+//				{
+//					JOptionPane.showMessageDialog(null, "Username and/or password incorrect.");
+//					System.out.println("You cannot retrieve Information");
+//				}
+//			}
+//			else
+//			{
+//				JOptionPane.showMessageDialog(null, "Your username does not match the current username! (Test)");
+//			}
+//			
+//		break;
 		
 		case "< Back":
 	        MainFrame.mainFrame.getContentPane().removeAll();
