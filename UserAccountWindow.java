@@ -9,6 +9,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JOptionPane;
 
 
 public class UserAccountWindow extends JPanel implements ActionListener
@@ -69,7 +70,26 @@ public class UserAccountWindow extends JPanel implements ActionListener
 		{
 		
 		case "Submit":
-                   //todo
+            UserAccountController submit = new UserAccountController(loggedUser.getUser(), currentPasswordField.getPassword(), 
+                newPasswordField.getPassword(), reenterNewPasswordField.getPassword());
+            String result = submit.update();
+            if(result.equals("OK")){
+                MainFrame.mainFrame.getContentPane().removeAll();      
+                NavigationWindow y = new NavigationWindow(loggedUser);
+                MainFrame.mainFrame.add(y);
+                MainFrame.mainFrame.getContentPane().invalidate();
+                MainFrame.mainFrame.getContentPane().validate();
+            }else if(result.equals("Passwords don't match")){
+                JOptionPane.showMessageDialog(null, "Passwords do not match.");
+                currentPasswordField.setText("");
+                newPasswordField.setText("");
+                reenterNewPasswordField.setText("");
+            }else{
+                JOptionPane.showMessageDialog(null, "Old password is incorrect.");
+                currentPasswordField.setText("");
+                newPasswordField.setText("");
+                reenterNewPasswordField.setText("");
+            }
 		break;
 			
 		case "Clear":

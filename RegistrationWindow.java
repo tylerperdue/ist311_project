@@ -85,8 +85,14 @@ public class RegistrationWindow extends JPanel
 				System.out.println("OK");
 			}else if(result.equals("pwds don't match")){
 				JOptionPane.showMessageDialog(null, "Passwords do not match.");
+				txtUsername.setText("");
+				txtPassword.setText("");
+				txtPasswordAgain.setText("");
 			}else{
 				JOptionPane.showMessageDialog(null, "Username already exists.");
+				txtUsername.setText("");
+				txtPassword.setText("");
+				txtPasswordAgain.setText("");
 			}
 			System.out.println(result);
 		}
