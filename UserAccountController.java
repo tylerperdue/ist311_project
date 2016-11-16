@@ -46,7 +46,7 @@ public class UserAccountController{
 					if((username+";"+oldPasswordString).equals(currentFile.get(i))){
 						accountExists = true;
 					}else{
-						result = "Old password is incorrect.";
+						result = "Current password is incorrect.";
 					}
 				}
 				// Print writer to write to new file - overwriting old USERLIST.txt textfile 

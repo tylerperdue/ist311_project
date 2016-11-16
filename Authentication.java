@@ -91,7 +91,7 @@ public class Authentication extends JFrame implements ActionListener
 	                    MainFrame.mainFrame.getContentPane().invalidate();
 	                    MainFrame.mainFrame.getContentPane().validate();
 	                    
-	                    JOptionPane.showMessageDialog(null, "You are successfully authenticated!");
+	                    System.out.println("Password Vault successfully authenticated");
 	                    
 					}
 					else

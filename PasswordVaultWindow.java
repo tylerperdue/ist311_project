@@ -16,7 +16,7 @@ public class PasswordVaultWindow extends JPanel implements ActionListener
      //background image pulled from URL
        static Image bgimg = null;{
         try {
-                bgimg = ImageIO.read(new File("PasswordVault.png"));
+                bgimg = ImageIO.read(LoginWindow.class.getResource("PasswordVault.png"));
         } catch (IOException e) {
                 System.out.println("Error");
         }}

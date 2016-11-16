@@ -29,7 +29,7 @@ public class PasswordGenWindow extends JPanel implements ActionListener
 
 	
 	JButton btnGenerate = new JButton("Generate");
-	JButton btnBack = new JButton("<");
+	JButton btnBack = new JButton("< Back");
 
 	JCheckBox chkboxSymbols = new JCheckBox();
 	JCheckBox chkboxNumbers = new JCheckBox();
@@ -98,7 +98,7 @@ public class PasswordGenWindow extends JPanel implements ActionListener
 		switch(ae.getActionCommand())
 		{
 		
-		case "<": 
+		case "< Back": 
                     MainFrame.mainFrame.getContentPane().removeAll();
                        
                     NavigationWindow x = new NavigationWindow(loggedUser);

@@ -85,7 +85,7 @@ public class LoginWindow extends JPanel
         			if(authenticated){
         				LoggedInUser lu = new LoggedInUser();
         				lu.setUser(usernameTxtField.getText());
-        				JOptionPane.showMessageDialog(null, "Successfully Authenticated!");
+        				System.out.println("Sucessfully authenticated");
         				NavigationWindow x = new NavigationWindow(lu);
         				MainFrame mainFrame = new MainFrame(lu);
                         mainFrame.add(x);

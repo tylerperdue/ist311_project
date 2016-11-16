@@ -85,7 +85,7 @@ public class UserAccountWindow extends JPanel implements ActionListener
                 newPasswordField.setText("");
                 reenterNewPasswordField.setText("");
             }else{
-                JOptionPane.showMessageDialog(null, "Old password is incorrect.");
+                JOptionPane.showMessageDialog(null, "Current password is incorrect.");
                 currentPasswordField.setText("");
                 newPasswordField.setText("");
                 reenterNewPasswordField.setText("");

@@ -44,7 +44,7 @@ public class AddCredentialsWindow extends JPanel implements ActionListener
     JPasswordField newPasswordTextfield = new JPasswordField();
     JButton addButton = new JButton("Add");
     JButton clearButton = new JButton("Clear");
-    JButton backButton = new JButton("<");
+    JButton backButton = new JButton("< Back");
     
     ButtonGroup categoriesGroup = new ButtonGroup();
     
@@ -191,7 +191,7 @@ public class AddCredentialsWindow extends JPanel implements ActionListener
 
             break;
 
-    		case "<":
+    		case "< Back":
                 MainFrame.mainFrame.getContentPane().removeAll();
                    
                 NavigationWindow z = new NavigationWindow(loggedUser);

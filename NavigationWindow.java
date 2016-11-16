@@ -128,7 +128,7 @@ public class NavigationWindow extends JPanel
                     
                     //asking if the user wants to logout
                         Object[] options = {"Yes", "No"};
-                        int a = JOptionPane.showOptionDialog(null, "Are you sure you want to logout?", "", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]);
+                        int a = JOptionPane.showOptionDialog(null, "Are you sure you want to log out?", "", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]);
                 	if(a == JOptionPane.YES_OPTION)
                             System.exit(0);
                         else
