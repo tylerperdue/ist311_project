@@ -54,10 +54,10 @@ public class LoginWindow extends JPanel
         passwordField.setBounds(230, 356, 135, 35);
         add(usernameTxtField);
         add(passwordField);
-        btnCancel.setBounds(230, 427, 90, 35);
+        btnLogin.setBounds(230, 427, 90, 35);
         add(btnLogin);      
         btnLogin.addActionListener(handler);
-        btnLogin.setBounds(125, 427, 90, 35);
+        btnCancel.setBounds(125, 427, 90, 35);
         add(btnCancel);
         btnCancel.addActionListener(handler);
         btnNewAccount.setBounds(150, 473, 145, 35);
@@ -99,7 +99,7 @@ public class LoginWindow extends JPanel
         			break;
 
         		case "Create New Account":
-                    CredentialManagementApplication.t.setEnabled(false);
+                    CredentialManagementApplication.t.setEnabled(true);
                     JFrame registrationWindow = new JFrame();
                     
                     registrationWindow.setSize(340, 410);
@@ -111,6 +111,7 @@ public class LoginWindow extends JPanel
                     registrationWindow.setTitle("Credential Manager - Team 6");
                     RegistrationWindow.setLayout(new BorderLayout());
                     registrationWindow.setVisible(true);   
+                    
         		break;		
                             
                 default:

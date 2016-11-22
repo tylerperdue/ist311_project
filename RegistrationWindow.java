@@ -54,6 +54,7 @@ public class RegistrationWindow extends JPanel
                 add(btnCancel);
                 
 		
+                
                 btnCancel.addActionListener(handler);
                 btnOK.addActionListener(handler);
 

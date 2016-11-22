@@ -34,6 +34,18 @@ public class PasswordGenController
 		
 	}
 	
+	
+	public int randomNumber()
+	{
+		
+		int randomNUM = 0;
+		
+		
+		Random r = new Random();
+		randomNUM = r.nextInt(2) + 1;
+		
+		return randomNUM;
+	}
 	public  String GenerateSmallLetters(int Length, boolean checkBoxState)
 	{
 		int nLength = Length;

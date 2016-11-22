@@ -47,8 +47,8 @@ public class UserAccountWindow extends JPanel implements ActionListener
             newPasswordField.setBounds(220,313,135,35);
             reenterNewPasswordField.setBounds(220,375,135,35);
             submitButton.setBounds(185,470,90,35);
-            clearButton.setBounds(130,530,90,35);
-            backButton.setBounds(250,530,90,35);
+            backButton.setBounds(130,530,90,35);
+            clearButton.setBounds(250,530,90,35);
             
             add(currentPasswordField);
             add(newPasswordField);
