@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.net.URL;
 
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -25,7 +26,7 @@ public class AddCredentialsWindow extends JPanel implements ActionListener
    //background image pulled from URL
    static Image bgimg = null;{
         try {
-            bgimg = ImageIO.read(LoginWindow.class.getResource("8Nrep2s.png"));
+            bgimg = ImageIO.read(LoginWindow.class.getResource("addcredential.png"));
         }catch (IOException e){
                 System.out.println("Error");
         }
@@ -42,9 +43,9 @@ public class AddCredentialsWindow extends JPanel implements ActionListener
 	JTextField newUsernameTextfield = new JTextField();
 	JTextField txtSysName = new JTextField(10);
     JPasswordField newPasswordTextfield = new JPasswordField();
-    JButton addButton = new JButton("Add");
-    JButton clearButton = new JButton("Clear");
-    JButton backButton = new JButton("< Back");
+    JButton addButton = new JButton();
+    JButton clearButton = new JButton();
+    JButton backButton = new JButton();
     
     ButtonGroup categoriesGroup = new ButtonGroup();
     
@@ -52,10 +53,7 @@ public class AddCredentialsWindow extends JPanel implements ActionListener
     JRadioButton rbEmail = new JRadioButton("Email", false);
     JRadioButton rbWork = new JRadioButton("Work", false);
     JRadioButton rbFinances = new JRadioButton("Finances", false);
-    
-    JLabel lblCategories = new JLabel("Categories:");
-    JLabel lblSysName = new JLabel("Website/App name:");
-        
+   
 	LoggedInUser loggedUser;
 
 
@@ -64,33 +62,55 @@ public class AddCredentialsWindow extends JPanel implements ActionListener
 		
         setLayout(null);
         
-        newUsernameTextfield.setBounds(233,257,130,35);
-    	newPasswordTextfield.setBounds(233,307,130,35);
-    	addButton.setBounds(190,540,90,35);
-    	backButton.setBounds(85,560,90,35);
-        clearButton.setBounds(300,560,90,35);
+        newUsernameTextfield.setBounds(175,310,130,35);
+        newUsernameTextfield.setCaretColor(Color.white);
+        newUsernameTextfield.setOpaque(false);
+        newUsernameTextfield.setBackground(new Color(0,0,0,0));
+        newUsernameTextfield.setForeground(Color.white);
+        newUsernameTextfield.setBorder(BorderFactory.createEmptyBorder());
+    	
+        newPasswordTextfield.setBounds(175,365,130,35);
+        newPasswordTextfield.setCaretColor(Color.white);
+        newPasswordTextfield.setOpaque(false);
+        newPasswordTextfield.setBackground(new Color(0,0,0,0));
+        newPasswordTextfield.setForeground(Color.white);
+        newPasswordTextfield.setBorder(BorderFactory.createEmptyBorder());
         
-        txtSysName.setBounds(233,375,130,35);
-        lblCategories.setBounds(63, 347, 100, 35);
-        lblCategories.setFont(new Font("HELVETICA", Font.BOLD, 16));
-        lblCategories.setForeground(new Color(67, 211, 175));
+    	addButton.setBounds(55,565,100,40);
+        addButton.setBorderPainted(false);
+        addButton.setContentAreaFilled(false);
+        addButton.setOpaque(false);
+        addButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    	
+        backButton.setBounds(0,30,70,38);
+        backButton.setBorderPainted(false);
+        backButton.setContentAreaFilled(false);
+        backButton.setOpaque(false);
+        backButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+               
+        clearButton.setBounds(220,565,100,40);
+        clearButton.setBorderPainted(false);
+        clearButton.setContentAreaFilled(false);
+        clearButton.setOpaque(false);
+        clearButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         
+        txtSysName.setBounds(175,447,120,30);
+        txtSysName.setCaretColor(Color.white);
+        txtSysName.setOpaque(false);
+        txtSysName.setBackground(new Color(0,0,0,0));
+        txtSysName.setForeground(Color.white);
+        txtSysName.setBorder(BorderFactory.createEmptyBorder());
         
-        lblSysName.setBounds(220, 347, 190, 35);
-        lblSysName.setFont(new Font("HELVETICA", Font.BOLD, 16));
-        lblSysName.setForeground(new Color(67, 211, 175));
-        
-        
-        rbPersonal.setBounds(100, 370, 100, 35);
+        rbPersonal.setBounds(70, 450, 100, 35);
         rbPersonal.setForeground(Color.WHITE);
         
-        rbEmail.setBounds(100, 400, 100, 35);
+        rbEmail.setBounds(70, 470, 100, 35);
         rbEmail.setForeground(Color.WHITE);
         
-        rbWork.setBounds(100, 430, 100, 35);
+        rbWork.setBounds(70, 490, 100, 35);
         rbWork.setForeground(Color.WHITE);
 
-        rbFinances.setBounds(100, 460, 100, 35);
+        rbFinances.setBounds(70, 510, 100, 35);
         rbFinances.setForeground(Color.WHITE);
         
         
@@ -99,10 +119,8 @@ public class AddCredentialsWindow extends JPanel implements ActionListener
         categoriesGroup.add(rbWork);
         categoriesGroup.add(rbFinances);
         
-        
         add(newUsernameTextfield);
         add(newPasswordTextfield);
-        add(lblSysName);
         add(rbPersonal);
         add(rbEmail);
         add(rbWork);
@@ -110,7 +128,6 @@ public class AddCredentialsWindow extends JPanel implements ActionListener
         add(addButton);
         add(clearButton);
         add(backButton);
-        add(lblCategories);
         add(txtSysName);
         
 
@@ -124,16 +141,6 @@ public class AddCredentialsWindow extends JPanel implements ActionListener
         this.loggedUser = lu;
 
 	}
-	
-	
-//	
-//	public ButtonEvent()
-//	{
-//		
-//		
-//		
-//	}
-//	
 	
 	public String getRadioButtonValue()
 	{
@@ -160,46 +167,42 @@ public class AddCredentialsWindow extends JPanel implements ActionListener
 	
 	public void actionPerformed(ActionEvent ae)
 	{
-		switch(ae.getActionCommand())
-		{
-    		case "Add":
-    			
+		if (ae.getSource() == addButton) {
     			if(!(getRadioButtonValue().equals("")) && !(newUsernameTextfield.getText().equals("")) && !(newPasswordTextfield.getText().equals("")) && !(txtSysName.getText().equals("")))
     			{	
-                AddCredentialsController x = new AddCredentialsController(getRadioButtonValue(),loggedUser, txtSysName.getText(), newUsernameTextfield.getText(), 
-                newPasswordTextfield.getPassword());
-    			boolean added = x.addCredential();
-                System.out.println(added);
+                            AddCredentialsController x = new AddCredentialsController(getRadioButtonValue(),loggedUser, txtSysName.getText(), newUsernameTextfield.getText(), 
+                            newPasswordTextfield.getPassword());
+                            boolean added = x.addCredential();
+                            System.out.println(added);
     			if(added){
-    				JOptionPane.showMessageDialog(null, "New credentials are successfully stored!");
-    				NavigationWindow y = new NavigationWindow(loggedUser);	
-    				MainFrame.mainFrame.getContentPane().removeAll();
-                    MainFrame.mainFrame.add(y);
-                    MainFrame.mainFrame.getContentPane().invalidate();
-                    MainFrame.mainFrame.getContentPane().validate();
+                            JOptionPane.showMessageDialog(null, "New credentials are successfully stored!");
+                            NavigationWindow y = new NavigationWindow(loggedUser);	
+                            MainFrame.mainFrame.getContentPane().removeAll();
+                            MainFrame.mainFrame.add(y);
+                            MainFrame.mainFrame.getContentPane().invalidate();
+                            MainFrame.mainFrame.getContentPane().validate();
     			}else{
-    				JOptionPane.showMessageDialog(null, "Unable to add credential");
+                            JOptionPane.showMessageDialog(null, "Unable to add credential");
     			}
     			}
     			else
     			{
     				JOptionPane.showMessageDialog(null, "Fill out all of the components in the form!");
     			}
-    		break;
-    			
-    		case "Clear":
-
-            break;
-
-    		case "< Back":
-                MainFrame.mainFrame.getContentPane().removeAll();
-                   
-                NavigationWindow z = new NavigationWindow(loggedUser);
-                MainFrame.mainFrame.add(z);
-                MainFrame.mainFrame.getContentPane().invalidate();
-                MainFrame.mainFrame.getContentPane().validate();
+                }
+                else if (ae.getSource() == clearButton) {
+                    newUsernameTextfield.setText("");
+                    newPasswordTextfield.setText("");
+                    txtSysName.setText("");
+                    rbPersonal.setSelected(true);
+                }
+                else if (ae.getSource() == backButton) {
+                    MainFrame.mainFrame.getContentPane().removeAll();   
+                    NavigationWindow z = new NavigationWindow(loggedUser);
+                    MainFrame.mainFrame.add(z);
+                    MainFrame.mainFrame.getContentPane().invalidate();
+                    MainFrame.mainFrame.getContentPane().validate();
                         
-    		break;	
+                }
 	   }  
     }
-}

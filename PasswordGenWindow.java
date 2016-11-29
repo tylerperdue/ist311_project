@@ -17,7 +17,7 @@ public class PasswordGenWindow extends JPanel implements ActionListener
     //background image pulled from URL
        static Image bgimg = null;{
         try {
-                bgimg = ImageIO.read(LoginWindow.class.getResource("fIIfuBg.png"));
+                bgimg = ImageIO.read(LoginWindow.class.getResource("generatepassword.png"));
         } 
         catch (IOException e) {
                 System.out.println("Image not found");
@@ -30,8 +30,8 @@ public class PasswordGenWindow extends JPanel implements ActionListener
     }  
 
 	
-	JButton btnGenerate = new JButton("Generate");
-	JButton btnBack = new JButton("< Back");
+	JButton btnGenerate = new JButton();
+	JButton btnBack = new JButton();
 
 	JCheckBox chkboxSymbols = new JCheckBox();
 	JCheckBox chkboxNumbers = new JCheckBox();
@@ -51,23 +51,21 @@ public class PasswordGenWindow extends JPanel implements ActionListener
         LoggedInUser loggedUser;
         
 	public PasswordGenWindow(LoggedInUser lu)
-	{
-		
+        {	
 		setLayout(null);
 		
 		ChangeHandler handler = new ChangeHandler();
-		
-		
+				
 		sldPwdLength.addChangeListener(handler);
 		sldPwdLength.setForeground(Color.WHITE);
 		sldPwdLength.setMajorTickSpacing(10);
 		sldPwdLength.setMinorTickSpacing(1);
                 
-		sldPwdLength.setBounds(200,220,200,100);
-		lblSliderLength.setBounds(310,180,200,100);
+		sldPwdLength.setBounds(160,290,200,100);
+		lblSliderLength.setBounds(280,265,200,100);
 		
 		lblPasswordLength.setFont(new Font("HELVETICA", Font.BOLD, 12));
-		lblPasswordLength.setBounds(260,180,200,100);
+		lblPasswordLength.setBounds(225,265,200,100);
 		lblPasswordLength.setForeground(Color.WHITE);
 		
 		lblSliderLength.setForeground(Color.WHITE);
@@ -77,23 +75,32 @@ public class PasswordGenWindow extends JPanel implements ActionListener
                 sldPwdLength.setPaintTicks(true);
 		sldPwdLength.setPaintLabels(true);
                 
-		Border border = BorderFactory.createLineBorder(Color.BLACK);
+		Border border = BorderFactory.createLineBorder(Color.WHITE);
 		txtArPassword.setBorder(BorderFactory.createCompoundBorder(border, 
 		            BorderFactory.createEmptyBorder(10, 10, 50, 300)));
 		
 		txtArPassword.setEditable(false);
 		
 		
-		scrlPane.setBounds(55,535,350,50);
-		chkboxSymbols.setBounds(80,355,23,23);
-		chkboxNumbers.setBounds(250,355,23,23);
-                chkboxLowercaseLetters.setBounds(80,393,23,23);
-                chkboxUppercaseLetters.setBounds(250,393,23,23);
+		scrlPane.setBounds(28,570,320,50);
+		chkboxSymbols.setBounds(54,397,23,23);
+		chkboxNumbers.setBounds(205,397,23,23);
+                chkboxLowercaseLetters.setBounds(54,447,23,23);
+                chkboxUppercaseLetters.setBounds(205,447,23,23);
                 
-                btnGenerate.setBounds(230,462,100,35);
-                btnBack.setBounds(120,462,100,35);
+                btnGenerate.setBounds(83,495,220,44);
+                btnGenerate.setBorderPainted(false);
+                btnGenerate.setContentAreaFilled(false);
+                btnGenerate.setOpaque(false);
+                btnGenerate.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 
-		add(sldPwdLength);
+                btnBack.setBounds(0,28,68,38);
+                btnBack.setBorderPainted(false);
+                btnBack.setContentAreaFilled(false);
+                btnBack.setOpaque(false);
+                btnBack.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		
+                add(sldPwdLength);
 		add(chkboxSymbols);
 		add(chkboxNumbers);
 		add(chkboxLowercaseLetters);
@@ -117,10 +124,9 @@ public class PasswordGenWindow extends JPanel implements ActionListener
 		{
 			if(event.getSource() == sldPwdLength)
 			{
-				int sliderLength = sldPwdLength.getValue();
-				String silderLength = Integer.toString(sliderLength);
-				lblSliderLength.setText(silderLength);
-				
+                            int sliderLength = sldPwdLength.getValue();
+                            String silderLength = Integer.toString(sliderLength);
+                            lblSliderLength.setText(silderLength);	
 				
 			}
 		}
@@ -132,48 +138,44 @@ public class PasswordGenWindow extends JPanel implements ActionListener
 		PasswordGenController Generator = new PasswordGenController();
 		
 		int nLength = 0;
-		switch(ae.getActionCommand())
-		{
-		
-		case "< Back": 
+		if (ae.getSource() == btnBack) { 
                     MainFrame.mainFrame.getContentPane().removeAll();
                     NavigationWindow x = new NavigationWindow(loggedUser);
                     MainFrame.mainFrame.add(x);
                     MainFrame.mainFrame.getContentPane().invalidate();
                     MainFrame.mainFrame.getContentPane().validate();		
-		break;
-			
-		case "Generate":
-			nLength = sldPwdLength.getValue();
-			try{
-				
-				String strGeneratedPassword = "";
-				String strCapture = "";
-				for(int i = 0; i < 50; i++)
-                                {	
-					for(int j = 0; j < 10; j++)
-					{
-						strGeneratedPassword +=   Generator.GenerateCapLetters(Generator.randomNumber(), this.chkboxUppercaseLetters.isSelected()) +
-                                                  Generator.GenerateSmallLetters(Generator.randomNumber(), this.chkboxLowercaseLetters.isSelected()) +
-                                                  Generator.GenerateNumbers(Generator.randomNumber(), this.chkboxNumbers.isSelected()) +
-                                                  Generator.GenerateSymbols(Generator.randomNumber(), this.chkboxSymbols.isSelected());
-					}
+                }
+                else if (ae.getSource() == btnGenerate) {	
+                    nLength = sldPwdLength.getValue();
+                    try{
+
+                        String strGeneratedPassword = "";
+                        String strCapture = "";
+                        for(int i = 0; i < 50; i++)
+                        {	
+                                for(int j = 0; j < 10; j++)
+                                {
+                                    strGeneratedPassword +=   Generator.GenerateCapLetters(Generator.randomNumber(), this.chkboxUppercaseLetters.isSelected()) +
+                                    Generator.GenerateSmallLetters(Generator.randomNumber(), this.chkboxLowercaseLetters.isSelected()) +
+                                    Generator.GenerateNumbers(Generator.randomNumber(), this.chkboxNumbers.isSelected()) +
+                                    Generator.GenerateSymbols(Generator.randomNumber(), this.chkboxSymbols.isSelected());
+                                }
 //                                        strGeneratedPassword += Generator.GenerateCapLetters(2, this.chkboxUppercaseLetters.isSelected()) +
 //                                                                Generator.GenerateSmallLetters(2, this.chkboxLowercaseLetters.isSelected()) +
 //                                                                Generator.GenerateNumbers(2, this.chkboxNumbers.isSelected()) +
 //                                                                Generator.GenerateSymbols(2, this.chkboxSymbols.isSelected());
-				
-					strCapture = strCapture + String.valueOf(strGeneratedPassword);
-				}
-				
-				
-				this.txtArPassword.setText(strCapture.substring(0, nLength));	
-			}
-			catch(Exception e)
-			{
-				JOptionPane.showMessageDialog(null, "Please specify at least one password requirement");
-			}
-        break;	
+
+                                strCapture = strCapture + String.valueOf(strGeneratedPassword);
+                        }
+
+
+                        this.txtArPassword.setText(strCapture.substring(0, nLength));	
+                    }
+                    catch(Exception e)
+                    {
+                        JOptionPane.showMessageDialog(null, "Please specify at least one password requirement");
+                    }
+        
 		}
 	}
 }

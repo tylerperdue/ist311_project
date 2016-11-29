@@ -15,7 +15,7 @@ public class RegistrationWindow extends JPanel
   
     static Image bgimg = null;{
         try {
-                bgimg = ImageIO.read(LoginWindow.class.getResource("Jr2kf94.png"));
+                bgimg = ImageIO.read(LoginWindow.class.getResource("createnewaccount.png"));
         } catch (IOException e) {
                 System.out.println("Error");
         }}
@@ -32,25 +32,48 @@ public class RegistrationWindow extends JPanel
 	
 	JPasswordField txtPasswordAgain = new JPasswordField();
 	
-	JButton btnCancel = new JButton("Cancel");
-	JButton btnOK = new JButton("OK");
+	JButton btnCancel = new JButton();
+	JButton btnOK = new JButton();
 	
 	
 	RegistrationWindow()
 	{
 		
 		this.setLayout(null);
-		this.setSize(340, 410);
+		this.setSize(375, 667);
 	
-                txtUsername.setBounds(183,170,115,35);
+                txtUsername.setBounds(185,327,148,35);
+                txtUsername.setOpaque(false);
+                txtUsername.setBackground(new Color(0,0,0,0));
+                txtUsername.setForeground(Color.white);
+                txtUsername.setCaretColor(Color.white);
+                txtUsername.setBorder(BorderFactory.createEmptyBorder());
                 add(txtUsername);
-                txtPassword.setBounds(183,210,115,35);
+                txtPassword.setBounds(185,383,148,35);
+                txtPassword.setOpaque(false);
+                txtPassword.setBackground(new Color(0,0,0,0));
+                txtPassword.setForeground(Color.white);
+                txtPassword.setCaretColor(Color.white);
+                txtPassword.setBorder(BorderFactory.createEmptyBorder());
                 add(txtPassword);
-                txtPasswordAgain.setBounds(183,260,115,35);
+                txtPasswordAgain.setBounds(186,457,148,35);
+                txtPasswordAgain.setOpaque(false);
+                txtPasswordAgain.setBackground(new Color(0,0,0,0));
+                txtPasswordAgain.setForeground(Color.white);
+                txtPasswordAgain.setCaretColor(Color.white);
+                txtPasswordAgain.setBorder(BorderFactory.createEmptyBorder());
                 add(txtPasswordAgain);	
-                btnOK.setBounds(85,310,80,35);
+                btnOK.setBounds(82,545,210,40);
+                btnOK.setBorderPainted(false);
+                btnOK.setContentAreaFilled(false);
+                btnOK.setOpaque(false);
+                btnOK.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 add(btnOK);
-                btnCancel.setBounds(183,310,90,35);
+                btnCancel.setBounds(0,30,70,38);
+                btnCancel.setBorderPainted(false);
+                btnCancel.setContentAreaFilled(false);
+                btnCancel.setOpaque(false);
+                btnCancel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 add(btnCancel);
                 
 		
@@ -68,15 +91,12 @@ public class RegistrationWindow extends JPanel
 	
 	public void actionPerformed(ActionEvent ae)
 	{
-		switch(ae.getActionCommand())
-		{
-		case "Cancel":
-			 ((Window) getRootPane().getParent()).dispose();
-                         CredentialManagementApplication.t.setEnabled(true); 
-		break;
-		
-		case "OK":
-            RegistrationController rc = new RegistrationController(txtUsername.getText(), txtPassword.getPassword(), 
+		if (ae.getSource() == btnCancel) {
+                    ((Window) getRootPane().getParent()).dispose();
+                    CredentialManagementApplication.t.setEnabled(true); 
+                }
+                else if (ae.getSource() == btnOK) {
+                    RegistrationController rc = new RegistrationController(txtUsername.getText(), txtPassword.getPassword(), 
 																   txtPasswordAgain.getPassword());
 			String result = rc.register();
 			if (result.equals("registered")){

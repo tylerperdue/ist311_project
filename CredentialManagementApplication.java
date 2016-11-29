@@ -12,15 +12,13 @@ public class CredentialManagementApplication extends JFrame {
 	
     
     JPanel loginWindow = new LoginWindow();
-    loginWindow.setLayout(new BorderLayout());
-    loginWindow.add(new LoginWindow(), BorderLayout.CENTER);
-    
+    loginWindow.setLayout(new BorderLayout());    
     
    
     setContentPane(loginWindow);
     setResizable(false);
     setLocation(400, 200);
-    setSize(450, 650);
+    setSize(375, 667);
     setDefaultCloseOperation(EXIT_ON_CLOSE);
     setTitle("Credential Manager - Team 6");
     

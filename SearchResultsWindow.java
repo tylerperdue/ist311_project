@@ -1,3 +1,5 @@
+import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -15,7 +17,7 @@ public class SearchResultsWindow extends JPanel implements ActionListener
    //background image pulled from URL
        static Image bgimg = null;{
         try {
-                bgimg = ImageIO.read(LoginWindow.class.getResource("SearchResults.png"));
+                bgimg = ImageIO.read(LoginWindow.class.getResource("searchresults.png"));
         } catch (IOException e) {
                 System.out.println("Error");
         }}
@@ -29,9 +31,9 @@ public class SearchResultsWindow extends JPanel implements ActionListener
     // Define JLabels, JButtons, JTextFields....
     JTextField searchBar = new JTextField();
     JTextArea resultsTextArea = new JTextArea();
-    JButton searchButton = new JButton("Search");
-    JButton clearButton = new JButton("Clear");
-    JButton backButton = new JButton("< Back");
+    JButton searchButton = new JButton();
+    JButton clearButton = new JButton();
+    JButton backButton = new JButton();
     
     LoggedInUser loggedUser;
 ;    
@@ -39,11 +41,32 @@ public class SearchResultsWindow extends JPanel implements ActionListener
     {
         setLayout(null);
         
-        searchBar.setBounds(120,198,150,30);
-        resultsTextArea.setBounds(80,310,290,160);
-        searchButton.setBounds(290,198,90,35);
-        clearButton.setBounds(180,510,90,35);
-        backButton.setBounds(180,555,90,35);
+        searchBar.setBounds(100,156,145,30);
+        searchBar.setOpaque(false);
+        searchBar.setBackground(new Color(0,0,0,0));
+        searchBar.setForeground(Color.white);
+        searchBar.setBorder(BorderFactory.createEmptyBorder());
+        searchBar.setCaretColor(Color.white);
+        
+        resultsTextArea.setBounds(60,340,270,180);
+        
+        searchButton.setBounds(236,157,80,30);
+        searchButton.setBorderPainted(false);
+        searchButton.setContentAreaFilled(false);
+        searchButton.setOpaque(false);
+        searchButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        
+        clearButton.setBounds(140,548,100,45);
+        clearButton.setBorderPainted(false);
+        clearButton.setContentAreaFilled(false);
+        clearButton.setOpaque(false);
+        clearButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        
+        backButton.setBounds(0,28,70,38);
+        backButton.setBorderPainted(false);
+        backButton.setContentAreaFilled(false);
+        backButton.setOpaque(false);
+        backButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         
         add(searchBar);
         add(resultsTextArea);
@@ -60,30 +83,19 @@ public class SearchResultsWindow extends JPanel implements ActionListener
     
 public void actionPerformed(ActionEvent ae)
 	{
-		switch(ae.getActionCommand())
-		{
-		
-		case "Search":
+		if (ae.getSource() == searchButton) {
                    SearchWindowController swc = new SearchWindowController(searchBar.getText());
-		break;
-			
-		case "Clear":
+                }
+                else if (ae.getSource() == clearButton) {
                     searchBar.setText("");
                     resultsTextArea.setText("");       
-                break;
-
-		case "< Back":
-
+                }
+                else if (ae.getSource() == backButton) {
                     MainFrame.mainFrame.getContentPane().removeAll();
-                  
                     NavigationWindow x = new NavigationWindow(loggedUser);
                     MainFrame.mainFrame.add(x);
                     MainFrame.mainFrame.getContentPane().invalidate();
                     MainFrame.mainFrame.getContentPane().validate();	
-		break;	
-                    
-
-                	
 		}
 	}
 }

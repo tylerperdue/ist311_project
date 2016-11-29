@@ -16,7 +16,7 @@ public class MainFrame extends JFrame
         mainFrame.add(mp);
         mainFrame.setResizable(false);
         mainFrame.setLocation(400, 200);
-        mainFrame.setSize(450, 650);
+        mainFrame.setSize(375, 667);;
         mainFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
         mainFrame.setVisible(true);
         mainFrame.setTitle("Credential Manager - Team 6");

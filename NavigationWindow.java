@@ -19,15 +19,15 @@ public class NavigationWindow extends JPanel
     private JButton addCredentialButton = new JButton();
     private JButton userAccountButton = new JButton();
     
-    private JButton searchButton = new JButton("Search");
-    private JButton logoutButton = new JButton("Log Out");
+    private JButton searchButton = new JButton();
+    private JButton logoutButton = new JButton();
     
     LoggedInUser loggedUser;
     
      //background image pulled from URL
        static Image bgimg = null;{
         try {
-                bgimg = ImageIO.read(LoginWindow.class.getResource("hon1nZd.png"));
+                bgimg = ImageIO.read(LoginWindow.class.getResource("navigation.png"));
         } catch (IOException e) {
                 System.out.println("Error");
         }}
@@ -43,37 +43,45 @@ public class NavigationWindow extends JPanel
    
        setLayout(null);
        
-       addCredentialButton.setBounds(50,215,155,145);
+       addCredentialButton.setBounds(45,265,115,115);
        addCredentialButton.setBorderPainted(false);
        addCredentialButton.setContentAreaFilled(false);
        addCredentialButton.setOpaque(false);
        addCredentialButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
        add(addCredentialButton);
        
-       passwordGenButton.setBounds(240,215,155,145);
+       passwordGenButton.setBounds(222,300,115,115);
        passwordGenButton.setBorderPainted(false);
        passwordGenButton.setContentAreaFilled(false);
        passwordGenButton.setOpaque(false);
        passwordGenButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
        add(passwordGenButton);
        
-       passwordVaultButton.setBounds(50,380,155,145);
+       passwordVaultButton.setBounds(45,433,115,115);
        passwordVaultButton.setBorderPainted(false);
        passwordVaultButton.setContentAreaFilled(false);
        passwordVaultButton.setOpaque(false);
        passwordVaultButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
        add(passwordVaultButton);
        
-       userAccountButton.setBounds(240,380,155,145);
+       userAccountButton.setBounds(222,468,115,115);
        userAccountButton.setBorderPainted(false);
        userAccountButton.setContentAreaFilled(false);
        userAccountButton.setOpaque(false);
        userAccountButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
        add(userAccountButton);
 
-       searchButton.setBounds(85,538,100,30);
+       searchButton.setBounds(64,592,70,30);
+       searchButton.setBorderPainted(false);
+       searchButton.setContentAreaFilled(false);
+       searchButton.setOpaque(false);
+       searchButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
        add(searchButton);
-       logoutButton.setBounds(270,538,100,30);
+       logoutButton.setBounds(270,30,110,40);
+       logoutButton.setBorderPainted(false);
+       logoutButton.setContentAreaFilled(false);
+       logoutButton.setOpaque(false);
+       logoutButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
        add(logoutButton);
        
        addCredentialButton.addActionListener(handler);

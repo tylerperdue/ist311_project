@@ -1,16 +1,14 @@
+import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.io.File;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
-
-
 
 
 public class PasswordVaultWindow extends JPanel implements ActionListener
@@ -19,7 +17,7 @@ public class PasswordVaultWindow extends JPanel implements ActionListener
      //background image pulled from URL
        static Image bgimg = null;{
         try {
-                bgimg = ImageIO.read(new File("PasswordVault.png"));
+                bgimg = ImageIO.read(LoginWindow.class.getResource("passwordvault.png"));
         } catch (IOException e) {
                 System.out.println("Error");
         }}
@@ -31,13 +29,8 @@ public class PasswordVaultWindow extends JPanel implements ActionListener
     }  
 
 	// Define JLabels, JButtons, JTextFields....
+	JButton btnBack = new JButton();
 
-
-	
-	JButton btnBack = new JButton("< Back");
-	JButton btnClear = new JButton("Clear");
-
-	
         JTextField retrievedUsername = new JTextField();
         JTextField retrievedPassword = new JTextField();
         
@@ -73,22 +66,34 @@ public class PasswordVaultWindow extends JPanel implements ActionListener
 
                 System.out.println("Selected item: " + this.cmbCategories.getSelectedItem());
                 
-                btnBack.setBounds(120,500,90,35);
+                
+                btnBack.setBounds(0,28,70,38);
+                btnBack.setBorderPainted(false);
+                btnBack.setContentAreaFilled(false);
+                btnBack.setOpaque(false);
+                btnBack.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 add(btnBack);
-		
-                btnClear.setBounds(260,500,90,35);
-                add(btnClear);
-		
-                cmbCategories.setBounds(190,260,135,35);
+		   
+                cmbCategories.setBounds(130,310,135,35);
                 add(cmbCategories);
                 
-                cmbWebsites.setBounds(270,310,135,35);
+                cmbWebsites.setBounds(190,378,150,35);
                 add(cmbWebsites);
                 
-                retrievedUsername.setBounds(250,403,160,30);
+                retrievedUsername.setBounds(170,453,150,35);
+                retrievedUsername.setOpaque(false);
+                retrievedUsername.setBackground(new Color(0,0,0,0));
+                retrievedUsername.setForeground(Color.white);
+                retrievedUsername.setBorder(BorderFactory.createEmptyBorder());
+                retrievedUsername.setEditable(false);
                 add(retrievedUsername);
                 
-                retrievedPassword.setBounds(250,450,160,30);
+                retrievedPassword.setBounds(170,540,150,35);
+                retrievedPassword.setOpaque(false);
+                retrievedPassword.setBackground(new Color(0,0,0,0));
+                retrievedPassword.setForeground(Color.white);
+                retrievedPassword.setBorder(BorderFactory.createEmptyBorder());
+                retrievedPassword.setEditable(false);
                 add(retrievedPassword);
 		
 		System.out.println(this.cmbCategories.getSelectedItem());
@@ -96,7 +101,6 @@ public class PasswordVaultWindow extends JPanel implements ActionListener
 		
 		//this.btnAuthentication.addActionListener(this);
 		this.btnBack.addActionListener(this);
-		this.btnClear.addActionListener(this);
 		
 	}
 	
@@ -158,24 +162,13 @@ public class PasswordVaultWindow extends JPanel implements ActionListener
 	
 	public void actionPerformed(ActionEvent ae)
 	{
-			
-		switch(ae.getActionCommand())
-		{
-		
-		case "< Back":
-	        MainFrame.mainFrame.getContentPane().removeAll();
-            
-            NavigationWindow x = new NavigationWindow(loggedUser);
-            MainFrame.mainFrame.add(x);
-            MainFrame.mainFrame.getContentPane().invalidate();
-            MainFrame.mainFrame.getContentPane().validate();
-			break;
-			
-		case "Clear":
-			this.retrievedUsername.setText(null);
-			this.retrievedPassword.setText(null);
-		default:
-			System.out.println("Error");
-		}
-	}
+            if (ae.getSource() == btnBack) {
+                MainFrame.mainFrame.getContentPane().removeAll();
+                NavigationWindow x = new NavigationWindow(loggedUser);
+                MainFrame.mainFrame.add(x);
+                MainFrame.mainFrame.getContentPane().invalidate();
+                MainFrame.mainFrame.getContentPane().validate();
+	
+            }
+}
 }

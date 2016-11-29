@@ -1,11 +1,12 @@
-
+import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -17,7 +18,7 @@ public class UserAccountWindow extends JPanel implements ActionListener
         //background image pulled from file
        static Image bgimg = null;{
         try {
-                bgimg = ImageIO.read(LoginWindow.class.getResource("UserAccount.png"));
+                bgimg = ImageIO.read(LoginWindow.class.getResource("useraccount.png"));
         } catch (IOException e) {
                 System.out.println("Error");
         }}
@@ -32,9 +33,9 @@ public class UserAccountWindow extends JPanel implements ActionListener
         JPasswordField currentPasswordField = new JPasswordField();
         JPasswordField newPasswordField = new JPasswordField();
         JPasswordField reenterNewPasswordField = new JPasswordField();
-        JButton submitButton = new JButton("Submit");
-        JButton clearButton = new JButton("Clear");
-        JButton backButton = new JButton("< Back");
+        JButton submitButton = new JButton();
+        JButton clearButton = new JButton();
+        JButton backButton = new JButton();
         
         LoggedInUser loggedUser;
         
@@ -43,12 +44,44 @@ public class UserAccountWindow extends JPanel implements ActionListener
 		
             setLayout(null);
             
-            currentPasswordField.setBounds(220,262,135,35);
-            newPasswordField.setBounds(220,313,135,35);
-            reenterNewPasswordField.setBounds(220,375,135,35);
-            submitButton.setBounds(185,470,90,35);
-            backButton.setBounds(130,530,90,35);
-            clearButton.setBounds(250,530,90,35);
+            currentPasswordField.setBounds(195,308,125,35);
+            currentPasswordField.setOpaque(false);
+            currentPasswordField.setBackground(new Color(0,0,0,0));
+            currentPasswordField.setForeground(Color.white);
+            currentPasswordField.setBorder(BorderFactory.createEmptyBorder());
+            currentPasswordField.setCaretColor(Color.white);
+            
+            newPasswordField.setBounds(195,360,125,35);
+            newPasswordField.setOpaque(false);
+            newPasswordField.setBackground(new Color(0,0,0,0));
+            newPasswordField.setForeground(Color.white);
+            newPasswordField.setBorder(BorderFactory.createEmptyBorder());
+            newPasswordField.setCaretColor(Color.white);
+            
+            reenterNewPasswordField.setBounds(195,438,125,35);
+            reenterNewPasswordField.setOpaque(false);
+            reenterNewPasswordField.setBackground(new Color(0,0,0,0));
+            reenterNewPasswordField.setForeground(Color.white);
+            reenterNewPasswordField.setBorder(BorderFactory.createEmptyBorder());
+            reenterNewPasswordField.setCaretColor(Color.white);
+            
+            submitButton.setBounds(55,529,100,40);
+            submitButton.setBorderPainted(false);
+            submitButton.setContentAreaFilled(false);
+            submitButton.setOpaque(false);
+            submitButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            
+            backButton.setBounds(0,28,70,38);
+            backButton.setBorderPainted(false);
+            backButton.setContentAreaFilled(false);
+            backButton.setOpaque(false);
+            backButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            
+            clearButton.setBounds(220,529,100,40);
+            clearButton.setBorderPainted(false);
+            clearButton.setContentAreaFilled(false);
+            clearButton.setOpaque(false);
+            clearButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
             
             add(currentPasswordField);
             add(newPasswordField);
@@ -66,10 +99,7 @@ public class UserAccountWindow extends JPanel implements ActionListener
 	
 	public void actionPerformed(ActionEvent ae)
 	{
-		switch(ae.getActionCommand())
-		{
-		
-		case "Submit":
+            if (ae.getSource() == submitButton) {
             UserAccountController submit = new UserAccountController(loggedUser.getUser(), currentPasswordField.getPassword(), 
                 newPasswordField.getPassword(), reenterNewPasswordField.getPassword());
             String result = submit.update();
@@ -90,26 +120,18 @@ public class UserAccountWindow extends JPanel implements ActionListener
                 newPasswordField.setText("");
                 reenterNewPasswordField.setText("");
             }
-		break;
-			
-		case "Clear":
+            }
+            else if (ae.getSource() == clearButton) {
                     currentPasswordField.setText("");
                     newPasswordField.setText("");
                     reenterNewPasswordField.setText("");    
-                break;
-
-		case "< Back":
-
+            }
+            else if (ae.getSource() == backButton) {
                     MainFrame.mainFrame.getContentPane().removeAll();
-                  
                     NavigationWindow x = new NavigationWindow(loggedUser);
                     MainFrame.mainFrame.add(x);
                     MainFrame.mainFrame.getContentPane().invalidate();
-                    MainFrame.mainFrame.getContentPane().validate();	
-		break;	
-                    
-
-                	
+                    MainFrame.mainFrame.getContentPane().validate();	     	
 		}
 	}
 }
