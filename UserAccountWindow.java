@@ -104,6 +104,7 @@ public class UserAccountWindow extends JPanel implements ActionListener
                 newPasswordField.getPassword(), reenterNewPasswordField.getPassword());
             String result = submit.update();
             if(result.equals("OK")){
+                JOptionPane.showMessageDialog(null, "Password changed successfully.")
                 MainFrame.mainFrame.getContentPane().removeAll();      
                 NavigationWindow y = new NavigationWindow(loggedUser);
                 MainFrame.mainFrame.add(y);
