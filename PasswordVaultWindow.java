@@ -128,7 +128,7 @@ public class PasswordVaultWindow extends JPanel implements ActionListener
 					
 					cmbWebsites.setToolTipText("Please select a Website/App name");
 					cmbWebsites.repaint();
-					strWebsites = pv.getCategories(cmbCategories.getSelectedItem().toString());
+					strWebsites = pv.getWebsites(cmbCategories.getSelectedItem().toString());
 			
 					cmbWebsites.addItem("Select ...");
 					for(String str : strWebsites)

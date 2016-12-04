@@ -26,7 +26,7 @@ public class PasswordVaultController
 		strSystemName = sysName;
 	}
 	
-	public String[] getCategories(String strCategory)
+	public String[] getWebsites(String strCategory)
 	{
 	
 		String[] empty = {};
@@ -80,7 +80,7 @@ public class PasswordVaultController
 			strCategories[j] = tempWord;
 		}
 		
-		
+		fileIn.close();
 		return strCategories;
 		
 		
@@ -164,6 +164,8 @@ public class PasswordVaultController
 			strCategories[j] = tempWord;
 		}
 		
+		fileIn.close();
+		
 		
 		return tempUsername;
 		
@@ -246,6 +248,7 @@ public class PasswordVaultController
 			strCategories[j] = tempWord;
 		}
 		
+		fileIn.close();
 		
 		return tempUsername;
 		
@@ -288,6 +291,7 @@ public class PasswordVaultController
 					count++;
 				
 				}
+				fileIn.close();
 			
 			}
 			
@@ -296,49 +300,9 @@ public class PasswordVaultController
 				System.err.println("Error");
 				System.out.println(e.getMessage());
 			}
+	
 		return count;
 	}
-	public void readCredentials()
-	{
-		
-		try{
-			
-		Scanner fileIn = new Scanner(new File("CREDENTIALS.txt"));
-		ArrayList<String> username = new ArrayList<String>();
-		String tempSemicCapture;
-		String tempLine;
-		
-		while(fileIn.hasNextLine())
-		{
-			tempLine = fileIn.nextLine().toString(); // store the line in tempLine variable
-			if(!(tempLine.isEmpty()))	// if the tempLine is not empty, then add tempLine to the ArrayList
-			username.add(tempLine);
-		}
-		
-		for(int i = 0; i < username.size(); i++)
-		{
-			
-			tempSemicCapture = username.get(i).toString();
-			String parts[] = tempSemicCapture.split(";");
-		
-		System.out.println("Array " + i + ":" + username.get(i));
-		
-			if(parts[0].equals(strUsername))
-			{
-				System.out.println("Current Username: " + parts[0]);
-				System.out.println("Category: " + parts[1]);
-				System.out.println("System Name: " + parts[2]);
-				System.out.println("Credential Name: " + parts[3]);
-				System.out.println("Credential Password: " + parts[4]);
-			}
-		
-		}
-		
-		}catch(FileNotFoundException e)
-		{
-			System.err.println("Error");
-			System.out.println(e.getMessage());
-		}
-	}
+
 
 }
