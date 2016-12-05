@@ -55,11 +55,11 @@ public class UserAccountController{
 				for(int i = 0; i < currentFile.size(); i++){
 					if(currentFile.get(i).equals(username+";"+oldPasswordString) && accountExists){
 						currentFile.set(i, username + ";" + newPasswordString);
+						result = "OK";
 					}
 					out.println(currentFile.get(i));
 				}
 				out.close();
-				result = "OK";
 			}catch(FileNotFoundException e) {
 		        System.out.print("FileNotFoundException: ");
 		        System.out.println(e.getMessage());
