@@ -137,12 +137,23 @@ public class NavigationWindow extends JPanel
                     //asking if the user wants to logout
                         Object[] options = {"Yes", "No"};
                         int a = JOptionPane.showOptionDialog(null, "Are you sure you want to log out?", "", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]);
-                	if(a == JOptionPane.YES_OPTION)
-                            System.exit(0);
-                        else
-                        {}
-           
-                	
+                	if(a == JOptionPane.YES_OPTION){
+                          try {
+                              AESCrypt aes = new AESCrypt(true, "password");
+                              File credentials = new File("CREDENTIALS.txt");
+                              File credentials_encrypted = new File("CREDENTIALS_encrypted.txt");
+                              aes.encrypt(2, "CREDENTIALS.txt", "CREDENTIALS_encrypted.txt");
+                              boolean x = credentials.delete();
+                              File userlist = new File("USERLIST.txt");
+                              File userlist_encrypted = new File("USERLIST_encrypted.txt");
+                              aes.encrypt(2, "USERLIST.txt", "USERLIST_encrypted.txt");
+                              boolean y = userlist.delete();
+                              System.exit(0);
+
+                            } catch (Exception e2) {
+                              e2.printStackTrace();
+                            }
+                  }else{}
                 }
             }
             

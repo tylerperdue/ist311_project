@@ -1,4 +1,0 @@
-tyler;password
-example;example
-fahad;f
-athira;password
